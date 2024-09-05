@@ -25,13 +25,9 @@ Image<ValueType> load_pgm (const std::string& pgm_filename)
 
   Image<ValueType> im (xdim, ydim);
 
-  for (int y = 0; y < im.height(); ++y) {
-    for (int x = 0; x < im.width(); ++x) {
-      float val;
-      in >> val;
-      im(x,y) = val;
-    }
-  }
+  for (int y = 0; y < im.height(); ++y)
+    for (int x = 0; x < im.width(); ++x)
+      in >> im(x,y);
 
   return im;
 }
