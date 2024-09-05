@@ -27,9 +27,9 @@ namespace Sixel {
 
   // display an image to the terminal:
   // ImageType can be any object that implements the following methods:
-  // - int width()
-  // - int height()
-  // - scalar_type operator() (int x, int y)
+  //     int width() const
+  //     int height() const
+  //     scalar_type operator() (int x, int y) const
   template <class ImageType>
     void display (const ImageType& image, double min, double max, const ColourMap& cmap = gray());
 
@@ -175,7 +175,7 @@ namespace Sixel {
       std::cout << "\033Pq" << colourmap_specifier (cmap);
       for (int y = 0; y < image.height(); y += 6)
         encode (image, min, max, cmap.size(), y);
-      std::cout << "\033\\\n";
+      std::cout << "\033\\";
     }
 
 
