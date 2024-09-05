@@ -3,6 +3,9 @@
 
 #include <vector>
 
+
+// A simple class to hold a 2D image using datatype 
+// specified in template parameter
 template <typename ValueType>
 class Image {
   public:
@@ -29,7 +32,7 @@ class Image {
 
 
 
-
+// Implementations of class methods:
 
 
 template <typename ValueType>

@@ -1,4 +1,3 @@
-#include "image.h"
 #include "sixel.h"
 #include "pgm.h"
 

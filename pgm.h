@@ -4,7 +4,6 @@
 #include <fstream>
 #include <string>
 #include <exception>
-#include <cmath>
 
 #include "image.h"
 
