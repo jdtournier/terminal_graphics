@@ -18,7 +18,7 @@ Image<ValueType> load_pgm (const std::string& pgm_filename)
   std::string magic;
   in >> magic;
   if (magic != "P2")
-    throw std::runtime_error ("iut file \"" + pgm_filename + "\" is not in expected PGM format");
+    throw std::runtime_error ("input file \"" + pgm_filename + "\" is not in expected PGM format");
 
   int xdim, ydim, maxval;
   in >> xdim >> ydim >> maxval;
