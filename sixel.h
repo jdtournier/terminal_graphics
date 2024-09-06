@@ -123,11 +123,12 @@ namespace Sixel {
 
         bool first = true;
         for (ctype intensity = 0; intensity < cmap_size; ++intensity) {
-          if (first) first = false;
-          else std::cout.put('$');
           std::string row = encode_row (im, y0, im.width(), nsixels, intensity);
-          if (row.size())
+          if (row.size()) {
+            if (first) first = false;
+            else std::cout.put('$');
             std::cout << "#" << static_cast<int>(intensity) << row;
+          }
         }
         std::cout.put('-');
       }
