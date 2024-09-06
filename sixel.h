@@ -19,10 +19,8 @@ namespace Sixel {
   // the data structure used to hold a colourmap:
   using ColourMap = std::vector<std::array<ctype,3>>;
 
-  // functions to generate ready-made colourmaps:
+  // convenience function to generate ready-made grayscale colourmap:
   ColourMap gray (int number = 100);
-  ColourMap hot (int number = 100);
-  ColourMap jet (int number = 100);
 
 
   // display an image to the terminal:
@@ -41,7 +39,7 @@ namespace Sixel {
 
 
 
-  // functions in anonymous namespace will not be accessible outside file:
+  // functions in anonymous namespace will remain private to this file:
   namespace {
 
     // helper functions for colourmap handling:
@@ -139,33 +137,6 @@ namespace Sixel {
     return cmap;
   }
 
-
-  inline ColourMap hot (int number)
-  {
-    ColourMap cmap (number);
-    for (int n = 0; n < number; ++n) {
-      cmap[n] = {
-        clamp_col (3*n, number),
-        clamp_col (3*n-number, number),
-        clamp_col (3*n-2*number, number)
-      };
-    }
-    return cmap;
-  }
-
-
-  inline ColourMap jet (int number)
-  {
-    ColourMap cmap (number);
-    for (int n = 0; n < number; ++n) {
-      cmap[n] = {
-        clamp_col (1.5*number-std::abs(4*n-3*number), number),
-        clamp_col (1.5*number-std::abs(4*n-2*number), number),
-        clamp_col (1.5*number-std::abs(4*n-1*number), number)
-      };
-    }
-    return cmap;
-  }
 
 
 
