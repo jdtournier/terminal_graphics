@@ -12,7 +12,7 @@ g++ main.cpp -o main
 ```
 
 To work, this requires a sixel-capable terminal, such as:
-- on Linux: xterm, mlterm
+- on Linux: wezterm, xterm, mlterm
 - on macOS: iTerm2
 - on Windows: minTTY
 
