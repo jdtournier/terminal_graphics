@@ -9,4 +9,4 @@ To work, this requires a sixel-capable terminal, such as:
 
 ## Demonstration
 
-![sixel render in terminal](demo_in_terminal.png)
+![sixel render in terminal](demo/terminal.png)
