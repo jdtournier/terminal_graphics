@@ -77,40 +77,42 @@ namespace Sixel {
 
 
 
-    inline void commit (ctype current, int repeats)
+    inline void commit (std::stringstream& out, ctype current, int repeats)
     {
       if (repeats <=3) {
         for (int n = 0; n < repeats; ++n)
-          std::cout.put (63+current);
+          out.put (63+current);
       }
       else
-        std::cout << '!' << repeats << char(63+current);
+        out << '!' << repeats << char(63+current);
     }
 
 
     template <class ImageType>
-    inline void encode_row (const ImageType& im, int y0, int x_dim, int nsixels, const ctype intensity)
+    inline std::string encode_row (const ImageType& im, int y0, int x_dim, int nsixels, const ctype intensity)
     {
-      std::cout << "#" << static_cast<int>(intensity);
-
       int repeats = 0;
+      std::stringstream out;
       ctype current = std::numeric_limits<ctype>::max();
 
       for (int x = 0; x < x_dim; ++x) {
         ctype c = 0;
-        for (int y = 0; y < nsixels; ++y)
+        for (int y = 0; y < nsixels; ++y) {
           if (im(x,y+y0) == intensity)
             c |= 1U<<y;
+        }
         if (c == current) {
           ++repeats;
           continue;
         }
-        commit (current, repeats);
+        commit (out, current, repeats);
         current = c;
         repeats = 1;
       }
       if (current)
-        commit (current, repeats);
+        commit (out, current, repeats);
+
+      return out.str();
     }
 
 
@@ -123,7 +125,9 @@ namespace Sixel {
         for (ctype intensity = 0; intensity < cmap_size; ++intensity) {
           if (first) first = false;
           else std::cout.put('$');
-          encode_row (im, y0, im.width(), nsixels, intensity);
+          std::string row = encode_row (im, y0, im.width(), nsixels, intensity);
+          if (row.size())
+            std::cout << "#" << static_cast<int>(intensity) << row;
         }
         std::cout.put('-');
       }
