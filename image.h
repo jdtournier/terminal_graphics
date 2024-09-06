@@ -3,14 +3,17 @@
 
 #include <vector>
 
+// **************************************************************************
+//                       public interface:
+// **************************************************************************
 
-// A simple class to hold a 2D image using datatype 
+// A simple class to hold a 2D image using datatype
 // specified in template parameter
 template <typename ValueType>
 class Image {
   public:
     // Instantiate an Image with the specified dimensions:
-    Image (int x_dim = 512, int y_dim = 512);
+    Image (int x_dim, int y_dim);
 
     // query image dimensions:
     int width () const;
@@ -32,7 +35,13 @@ class Image {
 
 
 
-// Implementations of class methods:
+
+
+
+// **************************************************************************
+//                   imlementation details below:
+// **************************************************************************
+
 
 
 template <typename ValueType>
@@ -42,16 +51,28 @@ inline Image<ValueType>::Image (int x_dim, int y_dim) :
   y_dim (y_dim) { }
 
 template <typename ValueType>
-inline int Image<ValueType>::width () const { return x_dim; }
+inline int Image<ValueType>::width () const
+{
+  return x_dim;
+}
 
 template <typename ValueType>
-inline int Image<ValueType>::height () const { return y_dim; }
+inline int Image<ValueType>::height () const
+{
+  return y_dim;
+}
 
 template <typename ValueType>
-inline ValueType& Image<ValueType>::operator() (int x, int y) { return data[x+x_dim*y]; }
+inline ValueType& Image<ValueType>::operator() (int x, int y)
+{
+  return data[x+x_dim*y];
+}
 
 template <typename ValueType>
-inline const ValueType& Image<ValueType>::operator() (int x, int y) const { return data[x+x_dim*y]; }
+inline const ValueType& Image<ValueType>::operator() (int x, int y) const
+{
+  return data[x+x_dim*y];
+}
 
 
 template <typename ValueType>
