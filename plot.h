@@ -209,18 +209,22 @@ namespace Sixel {
     x1 = mapx (x1);
     y1 = mapy (y1);
 
-    if (std::abs (x1-x0) < std::abs (y1-y0)) {
-      struct TransposeCanvas {
-        Image<Sixel::ctype>& canvas;
-        int margin_y;
-        int width () const { return canvas.height(); }
-        int height () const { return canvas.width(); }
-        decltype(canvas(0,0)) operator() (int x, int y) { return canvas(y,x); }
-      } transposed = { canvas, margin_y };
-      line_x (transposed, y0, x0, y1, x1, colour_index, stiple, stiple_frac);
+    struct CanvasView {
+      Image<Sixel::ctype>& canvas;
+      const int x_offset, y_offset;
+      const bool transpose;
+      int width () const { return transpose ? canvas.height()-y_offset : canvas.width()-x_offset; }
+      int height () const { return transpose ? canvas.width()-x_offset : canvas.height()-y_offset; }
+      Sixel::ctype& operator() (int x, int y) { return transpose ? canvas(y+x_offset, x) : canvas(x+x_offset,y); }
+    };
+
+    bool transposed = std::abs (x1-x0) < std::abs (y1-y0);
+    if (transposed) {
+      std::swap (x0, y0);
+      std::swap (x1, y1);
     }
-    else
-      line_x (canvas, x0, y0, x1, y1, colour_index, stiple, stiple_frac);
+    CanvasView view = { canvas, margin_x, margin_y, transposed };
+    line_x (view, x0, y0, x1, y1, colour_index, stiple, stiple_frac);
 
     return *this;
   }
@@ -266,7 +270,7 @@ namespace Sixel {
   Plot& Plot::add_text (const std::string& text, float x, float y, float anchor_x, float anchor_y, int colour_index)
   {
     const int text_width = font.width() * text.size();
-    int posx = std::round (mapx (x) - anchor_x * text_width);
+    int posx = std::round (margin_x + mapx (x) - anchor_x * text_width);
     int posy = std::round (mapy (y) - (1.0-anchor_y) * font.height());
 
     for (int n = 0; n < text.size(); ++n) {
@@ -281,7 +285,7 @@ namespace Sixel {
 
   inline float Plot::mapx (float x) const
   {
-    return margin_x + (canvas.width()-margin_x) * (x-xlim[0])/(xlim[1]-xlim[0]);
+    return (canvas.width()-margin_x) * (x-xlim[0])/(xlim[1]-xlim[0]);
   }
 
 
