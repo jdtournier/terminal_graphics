@@ -58,6 +58,9 @@ namespace Sixel {
   // **************************************************************************
 
 
+  // based on information in:
+  // https://vt100.net/shuford/terminal/all_about_sixels.txt
+
 
 
   // functions in anonymous namespace will remain private to this file:
