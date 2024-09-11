@@ -4,11 +4,11 @@ A simple header-only function to render images to terminal using sixels.
 
 ## Requirements
 
-This should compile using any standard-compliant C++11 compiler, using a
+This should compile using any standard-compliant C++20 compiler, using a
 command such as:
 
 ```
-g++ main.cpp -o main
+g++ main.cpp -std=c++20 -o main
 ```
 
 To work, this requires a sixel-capable terminal, such as:
