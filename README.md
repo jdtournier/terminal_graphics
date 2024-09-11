@@ -18,7 +18,7 @@ To work, this requires a sixel-capable terminal, such as:
 
 ## Demonstration
 
-![sixel render in terminal](demo/terminal.png)
+![sixel render in terminal](screenshot.png)
 
 
 ## Contents
