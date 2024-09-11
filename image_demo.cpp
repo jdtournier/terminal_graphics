@@ -1,4 +1,4 @@
-#include "sixel.h"
+#include "sixel/imshow.h"
 #include "pgm.h"
 
 

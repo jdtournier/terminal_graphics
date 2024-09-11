@@ -4,7 +4,7 @@
 #include <vector>
 #include <stdexcept>
 
-#include "image.h"
+#include "sixel/image.h"
 
 namespace Sixel {
 

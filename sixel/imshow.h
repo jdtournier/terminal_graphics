@@ -9,7 +9,7 @@
 #include <limits>
 #include <cmath>
 
-#include "image.h"
+#include "sixel/image.h"
 
 namespace Sixel {
 

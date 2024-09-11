@@ -4,9 +4,9 @@
 #include <algorithm>
 #include <iomanip>
 
-#include "sixel.h"
-#include "image.h"
-#include "font.h"
+#include "sixel/imshow.h"
+#include "sixel/image.h"
+#include "sixel/font.h"
 
 namespace Sixel {
 

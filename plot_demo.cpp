@@ -2,7 +2,7 @@
 #include <cmath>
 #include <vector>
 
-#include "plot.h"
+#include "sixel/plot.h"
 
 int main (int argc, char* argv[])
 {

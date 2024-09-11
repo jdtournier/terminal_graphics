@@ -7,14 +7,14 @@
 #include <exception>
 #include <limits>
 
-#include "image.h"
+#include "sixel/image.h"
 
 
 // Simple function to load an ascii-encoded PGM grayscale image.
-// This returns an object of type Image<ValueType>
+// This returns an object of type Sixel::Image<ValueType>
 
 template <typename ValueType>
-Image<ValueType> load_pgm (const std::string& pgm_filename)
+Sixel::Image<ValueType> load_pgm (const std::string& pgm_filename)
 {
   std::ifstream in (pgm_filename);
   if (!in)
@@ -43,7 +43,7 @@ Image<ValueType> load_pgm (const std::string& pgm_filename)
   if (maxval > std::numeric_limits<ValueType>::max())
     throw std::runtime_error ("maximum intensity in PGM file \"" + pgm_filename + "\" exceeds range of data type used");
 
-  Image<ValueType> im (xdim, ydim);
+  Sixel::Image<ValueType> im (xdim, ydim);
 
   for (int y = 0; y < im.height(); ++y) {
     for (int x = 0; x < im.width(); ++x) {
