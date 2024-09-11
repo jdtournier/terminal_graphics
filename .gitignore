@@ -1,0 +1,4 @@
+build_log.txt
+*.o
+*.swp
+*.exe
