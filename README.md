@@ -1,6 +1,7 @@
-# sixel
+# Terminal Graphics
 
-A simple header-only function to render images to terminal using sixels.
+A simple header-only function to render images to terminal using the sixel
+protocol.
 
 ## Requirements
 

@@ -4,47 +4,14 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * (c) 2024 J-Donald Tournier (jdtournier@gmail.com)
+ *
+ * With inspiration from:
+ * - for sixel protocol: https://vt100.net/shuford/terminal/all_about_sixels.txt
  */
 
 #ifndef __TERMINAL_GRAPHICS_H__
 #define __TERMINAL_GRAPHICS_H__
 
-/*
- * This header provides functionality for producing simple graphics on
- * the terminal.
- *
- * NOTE: the graphics are produced using the sixel protocol, which is not
- * supported by many terminals. At the time of writing, the following terminals
- * are known to have the necessary capabilities:
- *
- * - Linux: WezTerm, mlTerm, xterm
- * - macOS: iTerm2
- * - Windows:minTTY
- *
- * To use in your code, place this file alongside your own code, and #include
- * the file where necessary:
- *
- *       #include "terminal_graphics.h"
- *
- * At this point, you can make use of the functions. All functions are enclosed
- * in the TG namespace
- *
- * The main functions of interest are:
- *
- * - TG::imshow()  display a scalar image.
- * - TG::plot()    display a simple line plot for the data supplied
- *
- * Refer to the specific section below for details.
- */
-
-
-
-
-/*
- * Source information:
- *
- * - for sixel protocol: https://vt100.net/shuford/terminal/all_about_sixels.txt
- */
 
 #include <iostream>
 #include <string>
@@ -57,37 +24,105 @@
 #include <algorithm>
 #include <stdexcept>
 
+
+/**
+ * \mainpage
+ *
+ * This header provides functionality for producing simple graphics on the
+ * terminal.
+ *
+ * NOTE: the graphics are produced using the sixel protocol, which is not
+ * supported by many terminals. At the time of writing, the following terminals
+ * are known to have the necessary capabilities:
+ *
+ * - Linux: WezTerm, mlTerm, xterm
+ * - macOS: iTerm2
+ * - Windows:minTTY
+ *
+ * To use in your code, place this file alongside your own code, and #include
+ * the file where necessary:
+ *
+ *     #include "terminal_graphics.h"
+ *
+ * At this point, you can make use of the functions. All functions are enclosed
+ * in the TG namespace
+ *
+ * The main functions of interest are:
+ *
+ * - TG::imshow()  display a scalar image.
+ * - TG::plot()    display a simple line plot for the data supplied
+ *
+ * Refer to the example code in `demo.cpp` (reproduced below) to see how to use
+ * this functionality:
+ *
+ * \include demo.cpp
+ */
+
+
+
+/**
+ * The namespace within which all functionality is placed
+ */
 namespace TG {
 
   // the data type to use to store intensities:
   using ctype = unsigned char;
 
-  // the data structure used to hold a colourmap:
+  /**
+   * The data structure used to hold a colourmap
+   *
+   * A ColourMap is a way to associate an index with a colour. It can be
+   * represented as a simple table with 3 columns per row, to represent the
+   * red, green & blue components of each colour, one colour per row. When in
+   * use, the colour to be used is retrieved by looking up the values in the
+   * row at the specified index.
+   *
+   * Since this is a simple structure, we use existing C++ objects to store
+   * this information, as a (dynamically-sized) vector of (fixed-sized) arrays
+   * of 3 values. For convenience, we define the shorthand name 'ColourMap' for
+   * this specific type.
+   *
+   * Note that the sixel protocol we rely on in this implementation expects
+   * colourmap intensity values between 0 & 100.
+   *
+   * Defining a simple colourmap can be done by list initialisation, for
+   * example:
+   *
+   *     const ColourMap my_cmap = {
+   *                    { 0, 0, 100 },     // pure red
+   *                    { 0, 100, 0 },     // pure green
+   *                    { 100, 0, 0 }      // pure blue
+   *                };
+   *
+   * More complex colourmaps can be generated if required, see implementation
+   * of the gray() colourmap for inspiration.
+   */
   using ColourMap = std::vector<std::array<ctype,3>>;
 
-  // convenience function to generate ready-made grayscale colourmap:
+  //* convenience function to generate ready-made grayscale colourmap:
   ColourMap gray (int number = 100);
 
 
-  /*
-   * A simple class to hold a 2D image using datatype specified in template
-   * parameter
+  /**
+   * A simple class to hold a 2D image using datatype specified as `ValueType`
+   * template parameter
    */
   template <typename ValueType>
     class Image {
       public:
-        // Instantiate an Image with the specified dimensions:
+        //! Instantiate an Image with the specified dimensions
         Image (int x_dim, int y_dim);
 
-        // query image dimensions:
+        //! query image dimensions
         int width () const;
         int height () const;
 
-        // read / write intensity at coordinates (x,y):
+        //! query or set intensity at coordinates (x,y)
         ValueType& operator() (int x, int y);
+        //! query intensity at coordinates (x,y)
         const ValueType& operator() (int x, int y) const;
 
-        // clear image, setting all intensities to 0:
+        //! clear image, setting all intensities to 0
         void clear ();
 
       private:
@@ -97,20 +132,27 @@ namespace TG {
 
 
 
-  /*
-   * display an indexed image to the terminal, according to the colourmap supplied.
+  /**
+   * Display an indexed image to the terminal, according to the colourmap supplied.
    *
    * ImageType can be any object that implements the following methods:
    *     int width() const
    *     int height() const
    *     integer_type operator() (int x, int y) const
+   *
+   * Indexed images contain integer values that correspond to entries in the
+   * associated ColourMap. Different image values can have completely different
+   * colours, depending on the ColourMap used.
+   *
+   * The ColourMap must be specified via the cmap argument. See the
+   * documentation for ColourMap for details.
    */
   template <class ImageType>
     void imshow (const ImageType& image, const ColourMap& cmap);
 
 
-  /*
-   * display a scalar image to the terminal, rescaled between (min, max),
+  /**
+   * Display a scalar image to the terminal, rescaled between (min, max),
    * according to the (optional) colourmap supplied.
    *
    * ImageType can be any object that implements the following methods:
@@ -118,6 +160,17 @@ namespace TG {
    *     int height() const
    *     scalar_type operator() (int x, int y) const
    *         (where scalar_type can be any integer or floating-point type)
+   *
+   * Note that as for most image formats, the x index rasters from left to
+   * right, while the y index rasters from top to bottom.
+   *
+   * min & max specify how image values map to displayed intensities.
+   * Values <= min will render as pure black, while values >= max
+   * will render as pure white (assuming the default gray colourmap).
+   *
+   * A different colourmap can be specified via the cmap argument. See the
+   * documentation for ColourMap for details on how to generate different
+   * colourmaps if necessary.
    */
   template <class ImageType>
     void imshow (const ImageType& image, double min, double max, const ColourMap& cmap = gray());
@@ -126,7 +179,7 @@ namespace TG {
 
 
 
-  /*
+  /**
    * A class to hold the information about the font used for text rendering
    *
    * This is should not need to be used directly outside of this file.
@@ -152,6 +205,42 @@ namespace TG {
 
 
 
+  /**
+   * A class to provide plotting capabilities
+   *
+   * This can be used stand-alone, but it is easier to use it via the
+   * TH::plot() function, which essentially simply returns an (anonymous) TG::Plot
+   * Object (refer to the documentation for TG::plot() for details).
+   *
+   * This class provides a canvas initialised to the desired size (in pixels),
+   * with a default font size (6 pixels wide by default). The
+   * `show_on_destruct` argument is `false` by default, but that be set to
+   * `true` to ensure the class destructor calls show() when the class goes out
+   * of scope (this is what the TG::plot() function relies on).
+   *
+   * By default, the colourmap is set to:
+   *
+   * | index |  red  | green | blue  | name     |
+   * |:-----:|:-----:|:-----:|:-----:|----------|
+   * |   0   |   0   |   0   |   0   | black    |
+   * |   1   |  100  |  100  |  100  | white    |
+   * |   2   |  100  |  100  |   0   | yellow   |
+   * |   3   |  100  |   0   |  100  | magenta  |
+   * |   4   |   0   |  100  |  100  | cyan     |
+   * |   5   |  100  |   0   |   0   | red      |
+   * |   6   |   0   |  100  |   0   | green    |
+   * |   7   |   0   |   0   |  100  | blue     |
+   *
+   * Most methods return a reference to the current instance. This allows them
+   * to be daisy-chained like this (again, this is what the TG::plot() syntax
+   * relies on):
+   *
+   *     std::vector<float> data (10);
+   *     ...
+   *     Plot p (256, 128);
+   *     p.set_xlim (0,10).set_ylim (-1,1).add_line(data).show();
+   *
+   * */
   class Plot {
     public:
       Plot (int width, int height, int font_size = 6, bool show_on_destruct = false);
@@ -197,7 +286,7 @@ namespace TG {
       float mapy (float y) const;
   };
 
-  // convenience function to use for immediate rendering:
+  //* convenience function to use for immediate rendering:
   inline Plot plot (int width, int height, int font_size = 6) { return Plot (width, height, font_size, true); }
 
 
