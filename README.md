@@ -9,7 +9,7 @@ This should compile using any standard-compliant C++20 compiler, using a
 command such as:
 
 ```
-g++ main.cpp -std=c++20 -o main
+g++ demo.cpp -std=c++20 -o demo
 ```
 
 To work, this requires a sixel-capable terminal, such as:
@@ -17,16 +17,24 @@ To work, this requires a sixel-capable terminal, such as:
 - on macOS: iTerm2
 - on Windows: minTTY
 
+
+## Usage
+
+- copy the `terminal_graphics.h` file into your project
+- include the file in the relevant code file
+- add rendering calls to your code
+- run in a sixel-capable terminal (see list above)
+
+See the [demo program](demo.cpp) for example usage. This produces the output
+shown in the screenshot below.
+
+
 ## Demonstration
 
 ![sixel render in terminal](screenshot.png)
 
 
-## Contents
+# Documentation
 
-- For the sixel render only, you only need to include the `sixel.h` header into
-  your project
-- A simple image class is provided in the `image.h` header
-- A simple ascii PGM reader is provided in the `pgm.h` header
-
-
+[Click here for the doxygen-generated
+documentation](https://jdtournier.github.io/terminal_graphics/)

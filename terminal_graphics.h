@@ -39,7 +39,7 @@
  * - macOS: iTerm2
  * - Windows:minTTY
  *
- * To use in your code, place this file alongside your own code, and #include
+ * To use in your code, place this file alongside your own code, and \#include
  * the file where necessary:
  *
  *     #include "terminal_graphics.h"
@@ -240,33 +240,99 @@ namespace TG {
    *     Plot p (256, 128);
    *     p.set_xlim (0,10).set_ylim (-1,1).add_line(data).show();
    *
+   * Many methods accept the following arguments:
+   *
+   * - `colour_index` specifies the colour to use (default: 2 - yellow)
+   * - `stiple` specifies the length of dashes (in pixels) if a dashed line
+   *   is desired. Set to zero (the default) for a full line.
+   * - `stiple_frac` specific the fraction of the dash interval to be
+   *   filled (default: 0.5).
    * */
   class Plot {
     public:
       Plot (int width, int height, int font_size = 6, bool show_on_destruct = false);
       ~Plot ();
 
+      //! clear canvas and reset X & Y limits
       Plot& reset();
+      //! display the plot to the terminal
+      /** This is to be called after all rendering instructions have been
+       * invoked and the plot is ready to be displayed.
+       *
+       * If the plot has been constructed with `show_on_destruct` set to
+       * `true`, this will automatically be invoked by the destructor (this is
+       * the default behaviour when using the TG::plot() function).
+       */
       Plot& show();
 
+      //! set the colourmap if the default is not appropriate
       Plot& set_colourmap (const ColourMap& colourmap);
 
+      //! add a single line connection point (x0,y0) to (x1,y1).
+      /** If the X and/or Y limits have not yet been set (using set_xlim() or
+       * set_ylim(), this will automatically set them to 10% wider than the
+       * maximum range of the coordinates.
+       *
+       * See main class description for an explanation of the remaining
+       * arguments.
+       */
       Plot& add_line (float x0, float y0, float x1, float y1,
           int colour_index = 2, int stiple = 0, float stiple_frac = 0.5);
 
+      //! plot the data series `y` along the x-axis
+      /** The input `y` can be any class that provides `.size()` and
+       * `operator[]()` methods (e.g. `std::vector`). This will plot the data
+       * points at locations (0,y[0]), (1,y[1]), ... , (n,y[n]).
+       *
+       * If the X and/or Y limits have not yet been set (using set_xlim() or
+       * set_ylim(), this will automatically set the X limit to (0,n), and the
+       * Y limit to 10% wider than the maximum range of the data in `y`.
+       *
+       * See main class description for an explanation of the remaining
+       * arguments.
+       */
       template <class VerticesType>
         Plot& add_line (const VerticesType& y,
             int colour_index = 2, int stiple = 0, float stiple_frac = 0.5);
 
-      template <class VerticesType>
-        Plot& add_line (const VerticesType& x, const VerticesType& y,
+      //! plot the data series `y` against the data series `x`
+      /** The inputs `x` & `y` can be any classes that provides `.size()` and
+       * `operator[]()` methods (e.g. `std::vector`). This will plot the data
+       * points at locations (x[0],[0]), (x[1],y[1]), ... , (x[n],y[n]).
+       *
+       * If the X and/or Y limits have not yet been set (using set_xlim() or
+       * set_ylim(), these will automatically set them to 10% wider
+       * than the maximum range of the data in `x` & `y` respectively.
+       *
+       * See main class description for an explanation of the remaining
+       * arguments.
+       */
+      template <class VerticesTypeX, class VerticesTypeY>
+        Plot& add_line (const VerticesTypeX& x, const VerticesTypeY& y,
             int colour_index = 2, int stiple = 0, float stiple_frac = 0.5);
 
+      //! add text at the location specified
+      /** This renders the text in `text` at ithe location (x,y). By default,
+       * the text is centred on (x,y), but the location of the 'anchor' can be
+       * set using the `anchor_x` & `anchor_y` parameters.
+       *
+       * See main class description for an explanation of the remaining
+       * arguments.
+       */
       Plot& add_text (const std::string& text, float x, float y,
           float anchor_x = 0.5, float anchor_y = 0.5, int font_size = 6, int colour_index = 1);
 
+      //! set the range along the x-axis
+      /** Note that this can only be done once, and if required, should be
+       * invoked before any rendering commands.
+       */
       Plot& set_xlim (float min, float max, float expand_by = 0.0);
+      //! set the range along the y-axis
+      /** Note that this can only be done once, and if required, should be
+       * invoked before any rendering commands.
+       */
       Plot& set_ylim (float min, float max, float expand_by = 0.0);
+      //! set the interval of the gridlines, centered around zero
       Plot& set_grid (float x_interval, float y_interval);
 
     private:
@@ -286,7 +352,25 @@ namespace TG {
       float mapy (float y) const;
   };
 
-  //* convenience function to use for immediate rendering:
+  /** Convenience function to use for immediate rendering
+   *
+   * This returns a (temporary) Plot object, which methods can be called on,
+   * and daisy-chain to achieve the desired series of commands. The
+   * Plot::show() method will implicitly be called when the temporary object is
+   * destroyed, in other words immediately after the closing semicolon.
+   *
+   * For example:
+   *
+   *     std::vector x (10), y(10);
+   *     ...
+   *     TG::plot (256,128)
+   *       .set_ylim (-1,2)
+   *       .add_line (x, y, 3)
+   *       .set_grid (2, 0.5)
+   *       .add_text ("my plot", 5, 2);
+   *
+   * See methods in TG::Plot for details.
+   */
   inline Plot plot (int width, int height, int font_size = 6) { return Plot (width, height, font_size, true); }
 
 
@@ -573,6 +657,7 @@ namespace TG {
     xlim = { NAN, NAN };
     ylim = { NAN, NAN };
     xgrid = ygrid = NAN;
+    canvas.clear();
     return *this;
   }
 
@@ -699,8 +784,8 @@ namespace TG {
     }
 
 
-  template <class VerticesType>
-    inline Plot& Plot::add_line (const VerticesType& x, const VerticesType& y,
+  template <class VerticesTypeX, class VerticesTypeY>
+    inline Plot& Plot::add_line (const VerticesTypeX& x, const VerticesTypeY& y,
         int colour_index, int stiple, float stiple_frac)
     {
       if (x.size() != y.size())

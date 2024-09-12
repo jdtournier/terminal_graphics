@@ -1,4 +1,5 @@
 build_log.txt
+docs/
 *.o
 *.swp
 *.exe
