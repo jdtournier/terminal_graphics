@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <format>
 #include <vector>
 #include <array>
 #include <limits>
@@ -483,10 +484,11 @@ namespace TG {
     inline std::string colourmap_specifier (const ColourMap& colours)
     {
       int n = 0;
-      std::stringstream specifier;
+      std::string specifier;
       for (const auto& c : colours)
-        specifier << "#" << n++ << ";2;" << static_cast<int>(c[0]) << ";" << static_cast<int>(c[1]) << ";" << static_cast<int>(c[2]);
-      return specifier.str();
+        specifier += std::format ("#{};2;{};{};{}",
+            n++, static_cast<int>(c[0]), static_cast<int>(c[1]),static_cast<int>(c[2]));
+      return specifier;
     }
 
 
@@ -499,7 +501,7 @@ namespace TG {
           out.put (63+current);
       }
       else
-        out << '!' << repeats << char(63+current);
+        out << std::format ("!{}{}", repeats, char(63+current));
     }
 
 
@@ -542,7 +544,7 @@ namespace TG {
           if (row.size()) {
             if (first) first = false;
             else std::cout.put('$');
-            std::cout << "#" << static_cast<int>(intensity) << row;
+            std::cout << std::format ("#{}{}", static_cast<int>(intensity), row);
           }
         }
         std::cout.put('-');
@@ -559,7 +561,7 @@ namespace TG {
   template <class ImageType>
     inline void imshow (const ImageType& image, const ColourMap& cmap)
     {
-      std::cout << "\033Pq" << colourmap_specifier (cmap);
+      std::cout << "\033Pq" + colourmap_specifier (cmap);
       for (int y = 0; y < image.height(); y += 6)
         encode (image, cmap.size(), y);
       std::cout << "\033\\";
@@ -697,31 +699,29 @@ namespace TG {
 
   inline Plot& Plot::set_xlim (float min, float max, float expand_by)
   {
-    if (std::isfinite (xlim[0]) || std::isfinite (xlim[1])) {
-      std::cerr << "WARNING: xlim already set (maybe implicitly by previous calls - call set_xlim() before any draw calls" << std::endl;
-    }
-    else {
-      const float delta = expand_by * (max - min);
-      xlim[0] = min - delta;
-      xlim[1] = max + delta;
-      if (!std::isfinite (xgrid))
-        xgrid = (xlim[1] - xlim[0])/5.0;
-    }
+    if (std::isfinite (xlim[0]) || std::isfinite (xlim[1]))
+      throw std::runtime_error ("xlim already set (maybe implicitly by previous calls)");
+
+    const float delta = expand_by * (max - min);
+    xlim[0] = min - delta;
+    xlim[1] = max + delta;
+    if (!std::isfinite (xgrid))
+      xgrid = (xlim[1] - xlim[0])/5.0;
+
     return *this;
   }
 
   inline Plot& Plot::set_ylim (float min, float max, float expand_by)
   {
-    if (std::isfinite (ylim[0]) || std::isfinite (ylim[1])) {
-      std::cerr << "WARNING: ylim already set (maybe implicitly by previous calls - call set_ylim() before any draw calls" << std::endl;
-    }
-    else {
-      const float delta = expand_by * (max - min);
-      ylim[0] = min - delta;
-      ylim[1] = max + delta;
-      if (!std::isfinite (ygrid))
-        ygrid = (ylim[1] - ylim[0])/5.0;
-    }
+    if (std::isfinite (ylim[0]) || std::isfinite (ylim[1]))
+      throw std::runtime_error ("ylim already set (maybe implicitly by previous calls)");
+
+    const float delta = expand_by * (max - min);
+    ylim[0] = min - delta;
+    ylim[1] = max + delta;
+    if (!std::isfinite (ygrid))
+      ygrid = (ylim[1] - ylim[0])/5.0;
+
     return *this;
   }
 
@@ -1198,7 +1198,7 @@ namespace TG {
       case 6: return { 6, 12, Spleen6x12_data };
       case 8: return { 8, 16, Spleen8x16_data };
       case 12: return { 12, 24, Spleen12x24_data };
-      default: throw std::runtime_error ("font size " + std::to_string (size) + " not supported");
+      default: throw std::runtime_error (std::format ("font size {} not supported", size));
     }
   }
 

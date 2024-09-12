@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <format>
 
 #include "terminal_graphics.h"
 #include "load_pgm.h"
@@ -17,9 +18,8 @@ int main (int argc, char* argv[])
     const std::string image_filename = "brain.pgm";
 
     const auto image = load_pgm (image_filename);
-    std::cout << "Showing image \"" << image_filename << "\", size: " << image.width() << " x " << image.height() << std::endl;
+    std::cout << std::format ("Showing image \"{}\", size: {} x {}\n", image_filename, image.width(), image.height());
     TG::imshow (image, 0, 255);
-    std::cout << std::endl;
 
 
     // demonstate use of TG::plot():
@@ -33,7 +33,7 @@ int main (int argc, char* argv[])
     }
 
 
-    std::cout << "Plotting arbitrary lines:" << std::endl;
+    std::cout << "Plotting arbitrary lines:\n";
     TG::plot (768, 256, 8)
       .add_line (y, 4, 10)
       .add_line (x, y, 3)
@@ -42,16 +42,18 @@ int main (int argc, char* argv[])
 
     // a plot of random numbers:
 
+    // set up random number generator for Normal distribution:
     std::random_device rd;
     std::mt19937 gen (rd());
     std::normal_distribution normal (5.0, 2.0);
 
-    std::vector<float> noise (512);
+    // generate vector of Normally-distributed random numbers:
+    std::vector<float> noise (256);
     for (auto& x : noise)
       x = normal (gen);
 
-    std::cout << "Plotting Normally distributed random variables:" << std::endl;
-    TG::plot (1024, 256)
+    std::cout << "Plotting Normally distributed random variables:\n";
+    TG::plot (768, 256)
       .set_grid (50, 2)
       .add_line (noise,2);
 
