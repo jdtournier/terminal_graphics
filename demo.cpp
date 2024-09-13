@@ -34,10 +34,10 @@ int main (int argc, char* argv[])
 
 
     std::cout << "Plotting arbitrary lines:\n";
-    TG::plot (768, 256, 8)
+    TG::plot (768, 256)
       .add_line (y, 4, 10)
       .add_line (x, y, 3)
-      .add_text ("sinusoids", (x.size()-1)/2.0, 1.2, 0.5, 0.0, 12, 6);
+      .add_text ("sinusoids", (x.size()-1)/2.0, 1.2, 0.5, 0.0, 6);
 
 
     // a plot of random numbers:
