@@ -9,7 +9,7 @@ This should compile using any standard-compliant C++20 compiler, using a
 command such as:
 
 ```
-g++ demo.cpp -std=c++20 -o demo
+g++ -std=c++20 demo.cpp -o demo
 ```
 
 To work, this requires a sixel-capable terminal, such as:
