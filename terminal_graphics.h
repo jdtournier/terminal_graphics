@@ -25,6 +25,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <stdexcept>
+#include <cstdlib>
 
 
 /**
@@ -103,6 +104,7 @@ namespace TG {
 
   //* convenience function to generate ready-made grayscale colourmap:
   ColourMap gray (int number = 100);
+
 
 
   /**
@@ -647,6 +649,11 @@ namespace TG {
     margin_x = 5*font.width();
     margin_y = 2*font.height();
     reset();
+
+    if (std::getenv("WHITEBG") != nullptr)
+      for (auto& x : cmap)
+        for (auto& c : x)
+          c = 100-c;
   }
 
   inline Plot::~Plot ()
