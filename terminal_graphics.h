@@ -565,7 +565,7 @@ namespace TG {
       std::cout << "\033Pq" + colourmap_specifier (cmap);
       for (int y = 0; y < image.height(); y += 6)
         encode (image, cmap.size(), y);
-      std::cout << "\033\\";
+      std::cout << "\033\\\n";
     }
 
 
