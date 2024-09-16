@@ -375,7 +375,7 @@ namespace TG {
    *
    * See methods in TG::Plot for details.
    */
-  inline Plot plot (int width, int height) { return Plot (width, height, true); }
+  inline Plot plot (int width = 512, int height = 256) { return Plot (width, height, true); }
 
 
 
