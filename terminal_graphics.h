@@ -55,6 +55,9 @@
  * - TG::imshow()  display a scalar image.
  * - TG::plot()    display a simple line plot for the data supplied
  *
+ * For a more complete list of all of the available functionality, refer to the
+ * TG namespace.
+ *
  * Refer to the example code in `demo.cpp` (reproduced below) to see how to use
  * this functionality:
  *
@@ -102,12 +105,33 @@ namespace TG {
    */
   using ColourMap = std::vector<std::array<ctype,3>>;
 
-  //* convenience function to generate ready-made grayscale colourmap:
+  //* convenience function to generate ready-made grayscale colourmap
   ColourMap gray (int number = 100);
 
 
-  static inline constexpr std::string Home = "\033[H";
-  static inline constexpr std::string Clear = "\033[2J";
+  //! VT100 code to set the cursor position to the top left of the screen
+  /**
+   * This can be used in conjuction with TG::Clear to provide running updates.
+   * Simply feed the string to `std::cout` to issue the instruction, for example:
+   * ```
+   *   std::cout << TG::Clear;
+   *   while (true) {
+   *     std::cout << TG::Home << "Current progress:\n";
+   *     TG::plot().add_line(...);
+   *
+   *     ...
+   *     // perform computations, etc.
+   *     ...
+   *   }
+   * ```
+   * \sa TG::Clear
+   */
+  constexpr std::string Home = "\033[H";
+
+  //! VT100 code to clear the screen
+   /** \sa TG::Home
+   */
+  constexpr std::string Clear = "\033[2J";
 
   /**
    * A simple class to hold a 2D image using datatype specified as `ValueType`
@@ -880,7 +904,7 @@ namespace TG {
     inline void Font::render (Image<ValueType>& canvas, char c, int x, int y, int colour_index) const
     {
 
-      static const char mapping [] = {
+      static constexpr char mapping [] = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
         15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
@@ -908,7 +932,7 @@ namespace TG {
     // This is a straight bit-wise raster of the Unifont glyphs in the ASCII
     // visible range.
 
-    static inline constexpr const std::array<const unsigned char,3420> unifont8x16= {
+    constexpr std::array<const unsigned char,3420> unifont8x16= {
       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,8,8,8,8,8,0,8,8,0,0,0,0,34,34,34,34,0,
       0,0,0,0,0,0,0,0,0,0,0,0,0,36,36,36,63,18,18,63,9,9,9,0,0,0,0,0,0,8,62,73,9,14,56,
       72,73,62,8,0,0,0,0,0,0,70,41,41,22,8,8,52,74,74,49,0,0,0,0,0,0,28,34,34,20,12,74,
