@@ -106,6 +106,8 @@ namespace TG {
   ColourMap gray (int number = 100);
 
 
+  static inline constexpr std::string Home = "\033[H";
+  static inline constexpr std::string Clear = "\033[2J";
 
   /**
    * A simple class to hold a 2D image using datatype specified as `ValueType`
@@ -537,8 +539,9 @@ namespace TG {
 
 
     template <class ImageType>
-      inline void encode (const ImageType& im, int cmap_size, int y0)
+      inline std::string encode (const ImageType& im, int cmap_size, int y0)
       {
+        std::string out;
         const int nsixels = std::min (im.height()-y0, 6);
 
         bool first = true;
@@ -546,11 +549,12 @@ namespace TG {
           std::string row = encode_row (im, y0, im.width(), nsixels, intensity);
           if (row.size()) {
             if (first) first = false;
-            else std::cout.put('$');
-            std::cout << std::format ("#{}{}", static_cast<int>(intensity), row);
+            else out += '$';
+            out += std::format ("#{}{}", static_cast<int>(intensity), row);
           }
         }
-        std::cout.put('-');
+        out += '-';
+        return out;
       }
 
   }
@@ -564,10 +568,12 @@ namespace TG {
   template <class ImageType>
     inline void imshow (const ImageType& image, const ColourMap& cmap)
     {
-      std::cout << "\033Pq" + colourmap_specifier (cmap);
+      std::string out = "\033Pq" + colourmap_specifier (cmap);
       for (int y = 0; y < image.height(); y += 6)
-        encode (image, cmap.size(), y);
-      std::cout << "\033\\\n";
+        out += encode (image, cmap.size(), y);
+      out += "\033\\\n";
+      std::cout.write (out.data(), out.size());
+      std::cout.flush();
     }
 
 
