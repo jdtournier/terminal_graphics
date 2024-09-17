@@ -93,22 +93,27 @@ $(function(){ initResizable(false); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 Requirements</h1>
 <p>This should compile using any standard-compliant C++20 compiler, using a command such as:</p>
-<div class="fragment"><div class="line">g++ main.cpp -std=c++20 -o main</div>
+<div class="fragment"><div class="line">g++ -std=c++20 demo.cpp -o demo</div>
 </div><!-- fragment --><p>To work, this requires a sixel-capable terminal, such as:</p><ul>
 <li>on Linux: wezterm, xterm, mlterm</li>
 <li>on macOS: iTerm2</li>
 <li>on Windows: minTTY</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
+Usage</h1>
+<ul>
+<li>copy the <code>terminal_graphics.h</code> file into your project</li>
+<li>include the file in the relevant code file</li>
+<li>add rendering calls to your code</li>
+<li>run in a sixel-capable terminal (see list above)</li>
+</ul>
+<p>See the <a href="demo.cpp">demo program</a> for example usage. This produces the output shown in the screenshot below.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Demonstration</h1>
 <p><img src="screenshot.png" alt="sixel render in terminal" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Contents</h1>
-<ul>
-<li>For the sixel render only, you only need to include the <code>sixel.h</code> header into your project</li>
-<li>A simple image class is provided in the <code>image.h</code> header</li>
-<li>A simple ascii PGM reader is provided in the <code>pgm.h</code> header </li>
-</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Documentation</h1>
+<p><a href="https://jdtournier.github.io/terminal_graphics/">Click here for the doxygen-generated documentation</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

@@ -120,11 +120,17 @@ Functions</h2></td></tr>
 <tr class="memitem:a0019b6914b48d1d0939d24c5355ec798" id="r_a0019b6914b48d1d0939d24c5355ec798"><td class="memTemplParams" colspan="2">template&lt;class ImageType &gt; </td></tr>
 <tr class="memitem:a0019b6914b48d1d0939d24c5355ec798"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0019b6914b48d1d0939d24c5355ec798">imshow</a> (const ImageType &amp;image, double min, double max, const <a class="el" href="#a4767041352af4cab24a3a3aa320db79a">ColourMap</a> &amp;cmap=<a class="el" href="#a36e2428697e3334328aa0f9fa986cef0">gray</a>())</td></tr>
 <tr class="separator:a0019b6914b48d1d0939d24c5355ec798"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe40da7b7f0c30b81041a031df817b39" id="r_afe40da7b7f0c30b81041a031df817b39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTG_1_1Plot.html">Plot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe40da7b7f0c30b81041a031df817b39">plot</a> (int width, int height, int font_size=6)</td></tr>
-<tr class="separator:afe40da7b7f0c30b81041a031df817b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac7bc59d48eed3e752b1badb5d5cd01e" id="r_aac7bc59d48eed3e752b1badb5d5cd01e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTG_1_1Plot.html">Plot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac7bc59d48eed3e752b1badb5d5cd01e">plot</a> (int width=512, int height=256)</td></tr>
+<tr class="separator:aac7bc59d48eed3e752b1badb5d5cd01e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a20690dfb8eada7c85aa107be258fabac" id="r_a20690dfb8eada7c85aa107be258fabac"><td class="memItemLeft" align="right" valign="top">constexpr std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20690dfb8eada7c85aa107be258fabac">Home</a> = &quot;\033[H&quot;</td></tr>
+<tr class="memdesc:a20690dfb8eada7c85aa107be258fabac"><td class="mdescLeft">&#160;</td><td class="mdescRight">VT100 code to set the cursor position to the top left of the screen.  <br /></td></tr>
+<tr class="separator:a20690dfb8eada7c85aa107be258fabac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8063609a09e466a143db1d970aee88" id="r_a9a8063609a09e466a143db1d970aee88"><td class="memItemLeft" align="right" valign="top">constexpr std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a8063609a09e466a143db1d970aee88">Clear</a> = &quot;\033[2J&quot;</td></tr>
+<tr class="memdesc:a9a8063609a09e466a143db1d970aee88"><td class="mdescLeft">&#160;</td><td class="mdescRight">VT100 code to clear the screen.  <br /></td></tr>
+<tr class="separator:a9a8063609a09e466a143db1d970aee88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f33549297b2b324c66899e6dcdf021f" id="r_a1f33549297b2b324c66899e6dcdf021f"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f33549297b2b324c66899e6dcdf021f">lim_expand_by_factor</a> = 0.1f</td></tr>
 <tr class="separator:a1f33549297b2b324c66899e6dcdf021f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -276,8 +282,8 @@ template&lt;class ImageType &gt; </div>
 
 </div>
 </div>
-<a id="afe40da7b7f0c30b81041a031df817b39" name="afe40da7b7f0c30b81041a031df817b39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe40da7b7f0c30b81041a031df817b39">&#9670;&#160;</a></span>plot()</h2>
+<a id="aac7bc59d48eed3e752b1badb5d5cd01e" name="aac7bc59d48eed3e752b1badb5d5cd01e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac7bc59d48eed3e752b1badb5d5cd01e">&#9670;&#160;</a></span>plot()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,17 +294,12 @@ template&lt;class ImageType &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classTG_1_1Plot.html">Plot</a> TG::plot </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>width</em></span><span class="paramdefsep"> = </span><span class="paramdefval">512</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>font_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">6</span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span><span class="paramdefsep"> = </span><span class="paramdefval">256</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -321,6 +322,69 @@ TG::plot (256,128)
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a20690dfb8eada7c85aa107be258fabac" name="a20690dfb8eada7c85aa107be258fabac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20690dfb8eada7c85aa107be258fabac">&#9670;&#160;</a></span>Home</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string TG::Home = &quot;\033[H&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>VT100 code to set the cursor position to the top left of the screen. </p>
+<p>This can be used in conjuction with <a class="el" href="#a9a8063609a09e466a143db1d970aee88" title="VT100 code to clear the screen.">TG::Clear</a> to provide running updates. Simply feed the string to <code>std::cout</code> to issue the instruction, for example: </p><div class="fragment"><div class="line">std::cout &lt;&lt; <a class="code hl_variable" href="#a9a8063609a09e466a143db1d970aee88">TG::Clear</a>;</div>
+<div class="line"><span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line">  std::cout &lt;&lt; <a class="code hl_variable" href="#a20690dfb8eada7c85aa107be258fabac">TG::Home</a> &lt;&lt; <span class="stringliteral">&quot;Current progress:\n&quot;</span>;</div>
+<div class="line">  <a class="code hl_function" href="#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot</a>().<a class="code hl_function" href="classTG_1_1Plot.html#a3ab2fee9aa06e42899eaca6c1f917e20">add_line</a>(...);</div>
+<div class="line"> </div>
+<div class="line">  ...</div>
+<div class="line">  <span class="comment">// perform computations, etc.</span></div>
+<div class="line">  ...</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassTG_1_1Plot_html_a3ab2fee9aa06e42899eaca6c1f917e20"><div class="ttname"><a href="classTG_1_1Plot.html#a3ab2fee9aa06e42899eaca6c1f917e20">TG::Plot::add_line</a></div><div class="ttdeci">Plot &amp; add_line(float x0, float y0, float x1, float y1, int colour_index=2, int stiple=0, float stiple_frac=0.5)</div><div class="ttdoc">add a single line connection point (x0,y0) to (x1,y1).</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:773</div></div>
+<div class="ttc" id="anamespaceTG_html_a20690dfb8eada7c85aa107be258fabac"><div class="ttname"><a href="#a20690dfb8eada7c85aa107be258fabac">TG::Home</a></div><div class="ttdeci">constexpr std::string Home</div><div class="ttdoc">VT100 code to set the cursor position to the top left of the screen.</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:129</div></div>
+<div class="ttc" id="anamespaceTG_html_a9a8063609a09e466a143db1d970aee88"><div class="ttname"><a href="#a9a8063609a09e466a143db1d970aee88">TG::Clear</a></div><div class="ttdeci">constexpr std::string Clear</div><div class="ttdoc">VT100 code to clear the screen.</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:134</div></div>
+<div class="ttc" id="anamespaceTG_html_aac7bc59d48eed3e752b1badb5d5cd01e"><div class="ttname"><a href="#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot</a></div><div class="ttdeci">Plot plot(int width=512, int height=256)</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:404</div></div>
+</div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9a8063609a09e466a143db1d970aee88" title="VT100 code to clear the screen.">TG::Clear</a> </dd></dl>
+
+</div>
+</div>
+<a id="a9a8063609a09e466a143db1d970aee88" name="a9a8063609a09e466a143db1d970aee88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a8063609a09e466a143db1d970aee88">&#9670;&#160;</a></span>Clear</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string TG::Clear = &quot;\033[2J&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>VT100 code to clear the screen. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a20690dfb8eada7c85aa107be258fabac" title="VT100 code to set the cursor position to the top left of the screen.">TG::Home</a> </dd></dl>
+
+</div>
+</div>
 <a id="a1f33549297b2b324c66899e6dcdf021f" name="a1f33549297b2b324c66899e6dcdf021f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f33549297b2b324c66899e6dcdf021f">&#9670;&#160;</a></span>lim_expand_by_factor</h2>
 

@@ -100,8 +100,9 @@ $(function(){ initResizable(false); });
 <p>The main functions of interest are:</p>
 <ul>
 <li><a class="el" href="namespaceTG.html#ad1453d6b75485f7b94e51f1f56571025">TG::imshow()</a> display a scalar image.</li>
-<li><a class="el" href="namespaceTG.html#afe40da7b7f0c30b81041a031df817b39">TG::plot()</a> display a simple line plot for the data supplied</li>
+<li><a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot()</a> display a simple line plot for the data supplied</li>
 </ul>
+<p>For a more complete list of all of the available functionality, refer to the <a class="el" href="namespaceTG.html">TG</a> namespace.</p>
 <p>Refer to the example code in <code>demo.cpp</code> (reproduced below) to see how to use this functionality:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;cmath&gt;</span></div>
@@ -109,6 +110,7 @@ $(function(){ initResizable(false); });
 <div class="line"><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;format&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;terminal_graphics.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;load_pgm.h&quot;</span></div>
@@ -122,9 +124,8 @@ $(function(){ initResizable(false); });
 <div class="line">    <span class="keyword">const</span> std::string image_filename = <span class="stringliteral">&quot;brain.pgm&quot;</span>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span> image = load_pgm (image_filename);</div>
-<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Showing image \&quot;&quot;</span> &lt;&lt; image_filename &lt;&lt; <span class="stringliteral">&quot;\&quot;, size: &quot;</span> &lt;&lt; image.width() &lt;&lt; <span class="stringliteral">&quot; x &quot;</span> &lt;&lt; image.height() &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; std::format (<span class="stringliteral">&quot;Showing image \&quot;{}\&quot;, size: {} x {}\n&quot;</span>, image_filename, image.width(), image.height());</div>
 <div class="line">    <a class="code hl_function" href="namespaceTG.html#ad1453d6b75485f7b94e51f1f56571025">TG::imshow</a> (image, 0, 255);</div>
-<div class="line">    std::cout &lt;&lt; std::endl;</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// demonstate use of TG::plot():</span></div>
@@ -132,31 +133,46 @@ $(function(){ initResizable(false); });
 <div class="line">    std::vector&lt;float&gt; x (50);</div>
 <div class="line">    std::vector&lt;float&gt; y (50);</div>
 <div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x : std::views::iota (0, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(y.size())))</div>
+<div class="line">      y[x] = exp (-0.1*x) - 1.5*exp (-0.4*x);</div>
+<div class="line"> </div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;A simple one-line plot:\n&quot;</span>;</div>
+<div class="line">    <a class="code hl_function" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot</a>().<a class="code hl_function" href="classTG_1_1Plot.html#a3ab2fee9aa06e42899eaca6c1f917e20">add_line</a> (y);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
 <div class="line">    <span class="keywordflow">for</span> (std::size_t n = 0; n &lt; x.size();++n) {</div>
 <div class="line">      y[n] = std::sin (0.2*n) + 0.3*std::cos (0.33*n);</div>
 <div class="line">      x[n] = 20.0+10.0*std::cos (0.41*n) + 5.0*std::sin(0.21*n);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line"> </div>
-<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Plotting arbitrary lines:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line">    <a class="code hl_function" href="namespaceTG.html#afe40da7b7f0c30b81041a031df817b39">TG::plot</a> (768, 256, 8)</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Plotting arbitrary lines:\n&quot;</span>;</div>
+<div class="line">    <a class="code hl_function" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot</a> (768, 256)</div>
 <div class="line">      .<a class="code hl_function" href="classTG_1_1Plot.html#a3ab2fee9aa06e42899eaca6c1f917e20">add_line</a> (y, 4, 10)</div>
 <div class="line">      .<a class="code hl_function" href="classTG_1_1Plot.html#a3ab2fee9aa06e42899eaca6c1f917e20">add_line</a> (x, y, 3)</div>
-<div class="line">      .<a class="code hl_function" href="classTG_1_1Plot.html#a584ded57c796576ce233e75cdbd29e26">add_text</a> (<span class="stringliteral">&quot;sinusoids&quot;</span>, (x.size()-1)/2.0, 1.2, 0.5, 0.0, 12, 6);</div>
+<div class="line">      .<a class="code hl_function" href="classTG_1_1Plot.html#a7fe733ab04d0a08dd55b47d982d7b840">add_text</a> (<span class="stringliteral">&quot;sinusoids&quot;</span>, (x.size()-1)/2.0, 1.2, 0.5, 0.0, 6);</div>
+<div class="line"> </div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// a plot of random numbers:</span></div>
 <div class="line"> </div>
+<div class="line">    <span class="comment">// set up random number generator for Normal distribution:</span></div>
 <div class="line">    std::random_device rd;</div>
 <div class="line">    std::mt19937 gen (rd());</div>
 <div class="line">    std::normal_distribution normal (5.0, 2.0);</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;float&gt; noise (512);</div>
+<div class="line">    <span class="comment">// generate vector of Normally-distributed random numbers:</span></div>
+<div class="line">    std::vector&lt;float&gt; noise (256);</div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; x : noise)</div>
 <div class="line">      x = normal (gen);</div>
 <div class="line"> </div>
-<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Plotting Normally distributed random variables:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line">    <a class="code hl_function" href="namespaceTG.html#afe40da7b7f0c30b81041a031df817b39">TG::plot</a> (1024, 256)</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Plotting Normally distributed random variables:\n&quot;</span>;</div>
+<div class="line">    <a class="code hl_function" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot</a> (768, 256)</div>
+<div class="line">      .<a class="code hl_function" href="classTG_1_1Plot.html#a18c791a7aca2b549e21f7902fe7cad90">set_ylim</a> (-1, 11)</div>
 <div class="line">      .<a class="code hl_function" href="classTG_1_1Plot.html#afdd8302a4e053db0e2867e170ce8acab">set_grid</a> (50, 2)</div>
 <div class="line">      .<a class="code hl_function" href="classTG_1_1Plot.html#a3ab2fee9aa06e42899eaca6c1f917e20">add_line</a> (noise,2);</div>
 <div class="line"> </div>
@@ -169,11 +185,12 @@ $(function(){ initResizable(false); });
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="ttc" id="aclassTG_1_1Plot_html_a3ab2fee9aa06e42899eaca6c1f917e20"><div class="ttname"><a href="classTG_1_1Plot.html#a3ab2fee9aa06e42899eaca6c1f917e20">TG::Plot::add_line</a></div><div class="ttdeci">Plot &amp; add_line(float x0, float y0, float x1, float y1, int colour_index=2, int stiple=0, float stiple_frac=0.5)</div><div class="ttdoc">add a single line connection point (x0,y0) to (x1,y1).</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:735</div></div>
-<div class="ttc" id="aclassTG_1_1Plot_html_a584ded57c796576ce233e75cdbd29e26"><div class="ttname"><a href="classTG_1_1Plot.html#a584ded57c796576ce233e75cdbd29e26">TG::Plot::add_text</a></div><div class="ttdeci">Plot &amp; add_text(const std::string &amp;text, float x, float y, float anchor_x=0.5, float anchor_y=0.5, int font_size=6, int colour_index=1)</div><div class="ttdoc">add text at the location specified</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:809</div></div>
-<div class="ttc" id="aclassTG_1_1Plot_html_afdd8302a4e053db0e2867e170ce8acab"><div class="ttname"><a href="classTG_1_1Plot.html#afdd8302a4e053db0e2867e170ce8acab">TG::Plot::set_grid</a></div><div class="ttdeci">Plot &amp; set_grid(float x_interval, float y_interval)</div><div class="ttdoc">set the interval of the gridlines, centered around zero</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:728</div></div>
-<div class="ttc" id="anamespaceTG_html_ad1453d6b75485f7b94e51f1f56571025"><div class="ttname"><a href="namespaceTG.html#ad1453d6b75485f7b94e51f1f56571025">TG::imshow</a></div><div class="ttdeci">void imshow(const ImageType &amp;image, const ColourMap &amp;cmap)</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:560</div></div>
-<div class="ttc" id="anamespaceTG_html_afe40da7b7f0c30b81041a031df817b39"><div class="ttname"><a href="namespaceTG.html#afe40da7b7f0c30b81041a031df817b39">TG::plot</a></div><div class="ttdeci">Plot plot(int width, int height, int font_size=6)</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:374</div></div>
+<div class="ttc" id="aclassTG_1_1Plot_html_a18c791a7aca2b549e21f7902fe7cad90"><div class="ttname"><a href="classTG_1_1Plot.html#a18c791a7aca2b549e21f7902fe7cad90">TG::Plot::set_ylim</a></div><div class="ttdeci">Plot &amp; set_ylim(float min, float max, float expand_by=0.0)</div><div class="ttdoc">set the range along the y-axis</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:752</div></div>
+<div class="ttc" id="aclassTG_1_1Plot_html_a3ab2fee9aa06e42899eaca6c1f917e20"><div class="ttname"><a href="classTG_1_1Plot.html#a3ab2fee9aa06e42899eaca6c1f917e20">TG::Plot::add_line</a></div><div class="ttdeci">Plot &amp; add_line(float x0, float y0, float x1, float y1, int colour_index=2, int stiple=0, float stiple_frac=0.5)</div><div class="ttdoc">add a single line connection point (x0,y0) to (x1,y1).</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:773</div></div>
+<div class="ttc" id="aclassTG_1_1Plot_html_a7fe733ab04d0a08dd55b47d982d7b840"><div class="ttname"><a href="classTG_1_1Plot.html#a7fe733ab04d0a08dd55b47d982d7b840">TG::Plot::add_text</a></div><div class="ttdeci">Plot &amp; add_text(const std::string &amp;text, float x, float y, float anchor_x=0.5, float anchor_y=0.5, int colour_index=1)</div><div class="ttdoc">add text at the location specified</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:847</div></div>
+<div class="ttc" id="aclassTG_1_1Plot_html_afdd8302a4e053db0e2867e170ce8acab"><div class="ttname"><a href="classTG_1_1Plot.html#afdd8302a4e053db0e2867e170ce8acab">TG::Plot::set_grid</a></div><div class="ttdeci">Plot &amp; set_grid(float x_interval, float y_interval)</div><div class="ttdoc">set the interval of the gridlines, centered around zero</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:766</div></div>
+<div class="ttc" id="anamespaceTG_html_aac7bc59d48eed3e752b1badb5d5cd01e"><div class="ttname"><a href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot</a></div><div class="ttdeci">Plot plot(int width=512, int height=256)</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:404</div></div>
+<div class="ttc" id="anamespaceTG_html_ad1453d6b75485f7b94e51f1f56571025"><div class="ttname"><a href="namespaceTG.html#ad1453d6b75485f7b94e51f1f56571025">TG::imshow</a></div><div class="ttdeci">void imshow(const ImageType &amp;image, const ColourMap &amp;cmap)</div><div class="ttdef"><b>Definition</b> terminal_graphics.h:593</div></div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

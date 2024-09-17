@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7eplot_0',['~Plot',['../classTG_1_1Plot.html#ae33be437af52aa49bbb0b0cc1b003167',1,'TG::Plot']]]
+  ['width_0',['width',['../classTG_1_1Image.html#a22c520a936ba1239e88822073a76880e',1,'TG::Image::width()'],['../classTG_1_1Font.html#a870eeb21f0cdaf69ca51c25217986b86',1,'TG::Font::width()']]]
 ];
