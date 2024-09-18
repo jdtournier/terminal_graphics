@@ -106,7 +106,7 @@ namespace TG {
   using ColourMap = std::vector<std::array<ctype,3>>;
 
   //* convenience function to generate ready-made grayscale colourmap
-  ColourMap gray (int number = 100);
+  ColourMap gray (int number = 101);
 
 
   //! VT100 code to set the cursor position to the top left of the screen
@@ -437,7 +437,7 @@ namespace TG {
 
     ColourMap cmap (number);
     for (int n = 0; n < number; ++n) {
-      ctype c = clamp (n, number);
+      ctype c = clamp (n, number-1);
       cmap[n] = { c, c, c };
     }
     return cmap;
