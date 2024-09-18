@@ -547,6 +547,11 @@ namespace TG {
           if (im(x,y+y0) == intensity)
             c |= 1U<<y;
         }
+        if (!repeats) {
+          ++repeats;
+          current = c;
+          continue;
+        }
         if (c == current) {
           ++repeats;
           continue;
@@ -555,8 +560,7 @@ namespace TG {
         current = c;
         repeats = 1;
       }
-      if (current)
-        commit (out, current, repeats);
+      commit (out, current, repeats);
 
       return out.str();
     }
