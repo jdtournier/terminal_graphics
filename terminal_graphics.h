@@ -162,6 +162,32 @@ namespace TG {
 
 
 
+
+  /** Adapter class to rescale intensities of image to colourmap indices
+   *
+   * Rescale intensities of image from (min, max) to the range of indices
+   * in the specified colourmap, rounding to the nearest integer index, and
+   * clamping the values to the [ min max ] range.
+   */
+  template <class ImageType>
+    class Rescale {
+      public:
+        Rescale (const ImageType& image, double minval, double maxval, int cmap_size);
+
+        int width () const;
+        int height () const;
+        ctype operator() (int x, int y) const;
+
+      private:
+        const ImageType& im;
+        const double min, max;
+        const int cmap_size;
+    };
+
+
+
+
+
   /**
    * Display an indexed image to the terminal, according to the colourmap supplied.
    *
@@ -498,6 +524,31 @@ namespace TG {
 
 
 
+
+  // **************************************************************************
+  //                   Rescale implementation
+  // **************************************************************************
+
+  template <class ImageType>
+    inline Rescale<ImageType>::Rescale (const ImageType& image, double minval, double maxval, int cmap_size) :
+      im (image), min (minval), max (maxval), cmap_size (cmap_size) { }
+
+  template <class ImageType>
+    inline int Rescale<ImageType>::width () const { return im.width(); }
+
+  template <class ImageType>
+    inline int Rescale<ImageType>::height () const { return im.height(); }
+
+  template <class ImageType>
+    inline ctype Rescale<ImageType>::operator() (int x, int y) const {
+      double rescaled = cmap_size * (im(x,y) - min) / (max - min);
+      return std::round (std::min (std::max (rescaled, 0.0), cmap_size-1.0));
+    }
+
+
+
+
+
   // **************************************************************************
   //                   imshow implementation
   // **************************************************************************
@@ -609,22 +660,8 @@ namespace TG {
   template <class ImageType>
     inline void imshow (const ImageType& image, double min, double max, const ColourMap& cmap)
     {
-      // adapter class to rescale intensities of original image from (min, max)
-      // range to range of colourmap, and round to nearest integer index:
-      struct Adapter {
-        const ImageType& im;
-        const double min, max;
-        const int cmap_size;
-
-        int width () const { return im.width(); }
-        int height () const { return im.height(); }
-        ctype operator() (int x, int y) const {
-          double rescaled = cmap_size * (im(x,y) - min) / (max - min);
-          return std::round (std::min (std::max (rescaled, 0.0), cmap_size-1.0));
-        }
-      } adapted = { image, min, max, static_cast<int>(cmap.size()) };
-
-      imshow (adapted, cmap);
+      Rescale<ImageType> rescaled (image, min, max, cmap.size());
+      imshow (rescaled, cmap);
     }
 
 
