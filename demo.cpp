@@ -29,7 +29,7 @@ int main (int argc, char* argv[])
 
 
 
-    for (int x : std::views::iota (0, static_cast<int>(y.size())))
+    for (unsigned int x = 0; x < y.size(); ++x)
       y[x] = exp (-0.1*x) - 1.5*exp (-0.4*x);
 
     std::cout << "A simple one-line plot:\n";
