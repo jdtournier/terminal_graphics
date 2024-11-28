@@ -717,7 +717,7 @@ namespace TG {
         {  20,  20, 100 }
         })
   {
-    margin_x = 5*font.width();
+    margin_x = 10*font.width();
     margin_y = 2*font.height();
     reset();
 

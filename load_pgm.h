@@ -14,7 +14,8 @@
 // This returns an object of type TG::Image<ValueType>
 
 
-TG::Image<unsigned char> load_pgm (const std::string& pgm_filename)
+template <typename ValueType = unsigned char>
+TG::Image<ValueType> load_pgm (const std::string& pgm_filename)
 {
   std::ifstream in (pgm_filename);
   if (!in)
@@ -40,16 +41,16 @@ TG::Image<unsigned char> load_pgm (const std::string& pgm_filename)
   if (maxval <= 0)
     throw std::runtime_error ("PGM file \"" + pgm_filename + "\" is badly formed: maxval lower than or equal to zero");
 
-  if (maxval > std::numeric_limits<unsigned char>::max())
+  if (maxval > std::numeric_limits<ValueType>::max())
     throw std::runtime_error ("maximum intensity in PGM file \"" + pgm_filename + "\" exceeds range of data type used");
 
-  TG::Image<unsigned char> im (xdim, ydim);
+  TG::Image<ValueType> im (xdim, ydim);
 
   for (int y = 0; y < im.height(); ++y) {
     for (int x = 0; x < im.width(); ++x) {
       int val;
       in_clean >> val;
-      im(x,y) = static_cast<unsigned int> (val);
+      im(x,y) = static_cast<ValueType> (val);
     }
   }
 
