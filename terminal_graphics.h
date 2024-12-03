@@ -192,6 +192,7 @@ namespace TG {
    * Display an indexed image to the terminal, according to the colourmap supplied.
    *
    * ImageType can be any object that implements the following methods:
+   *
    *     int width() const
    *     int height() const
    *     integer_type operator() (int x, int y) const
@@ -200,7 +201,7 @@ namespace TG {
    * associated ColourMap. Different image values can have completely different
    * colours, depending on the ColourMap used.
    *
-   * The ColourMap must be specified via the cmap argument. See the
+   * The ColourMap must be specified via the `cmap` argument. See the
    * documentation for ColourMap for details.
    */
   template <class ImageType>
@@ -212,19 +213,21 @@ namespace TG {
    * according to the (optional) colourmap supplied.
    *
    * ImageType can be any object that implements the following methods:
+   *
    *     int width() const
    *     int height() const
    *     scalar_type operator() (int x, int y) const
-   *         (where scalar_type can be any integer or floating-point type)
+   *
+   * (where `scalar_type` can be any integer or floating-point type)
    *
    * Note that as for most image formats, the x index rasters from left to
    * right, while the y index rasters from top to bottom.
    *
-   * min & max specify how image values map to displayed intensities.
-   * Values <= min will render as pure black, while values >= max
+   * `min` & `max` specify how image values map to displayed intensities.
+   * Values <= `min` will render as pure black, while values >= `max`
    * will render as pure white (assuming the default gray colourmap).
    *
-   * A different colourmap can be specified via the cmap argument. See the
+   * A different colourmap can be specified via the `cmap` argument. See the
    * documentation for ColourMap for details on how to generate different
    * colourmaps if necessary.
    */
@@ -265,7 +268,7 @@ namespace TG {
    * A class to provide plotting capabilities
    *
    * This can be used stand-alone, but it is easier to use it via the
-   * TH::plot() function, which essentially simply returns an (anonymous) TG::Plot
+   * TG::plot() function, which essentially simply returns an (anonymous) TG::Plot
    * Object (refer to the documentation for TG::plot() for details).
    *
    * This class provides a canvas initialised to the desired size (in pixels),
