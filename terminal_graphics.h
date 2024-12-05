@@ -193,6 +193,26 @@ namespace TG {
 
 
 
+  /** Adapter class to magnify an image
+   *
+   * This makes the image `factor` bigger than the original.
+   */
+  template <class ImageType>
+    class magnify {
+      public:
+        magnify (const ImageType& image, int factor);
+
+        int width () const;
+        int height () const;
+        decltype(std::declval<const ImageType>()(0,0)) operator() (int x, int y) const;
+
+      private:
+        const ImageType& im;
+        const int factor;
+    };
+
+
+
 
 
   /**
@@ -577,6 +597,26 @@ namespace TG {
       return std::round (std::min (std::max (rescaled, 0.0), cmap_size-1.0));
     }
 
+
+
+  // **************************************************************************
+  //                   magnify implementation
+  // **************************************************************************
+
+  template <class ImageType>
+    inline magnify<ImageType>::magnify (const ImageType& image, int factor) :
+      im (image), factor (factor) { }
+
+  template <class ImageType>
+    inline int magnify<ImageType>::width () const { return im.width() * factor; }
+
+  template <class ImageType>
+    inline int magnify<ImageType>::height () const { return im.height() * factor; }
+
+  template <class ImageType>
+    inline decltype(std::declval<const ImageType>()(0,0)) magnify<ImageType>::operator() (int x, int y) const {
+      return im (x/factor, y/factor);
+    }
 
 
 

@@ -21,6 +21,9 @@ int main (int argc, char* argv[])
     std::cout << std::format ("Showing image \"{}\", size: {} x {}\n", image_filename, image.width(), image.height());
     TG::imshow (image, 0, 255);
 
+    std::cout << "Same image magnified by a factor of 2:\n";
+    TG::imshow (TG::magnify (image, 2), 0, 255);
+
 
     // demonstate use of TG::plot():
 
