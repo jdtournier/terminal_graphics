@@ -108,6 +108,13 @@ namespace TG {
   //* convenience function to generate ready-made grayscale colourmap
   ColourMap gray (int number = 101);
 
+  //* convenience function to generate ready-made hot colourmap
+  ColourMap hot (int number = 101);
+
+  //* convenience function to generate ready-made jet colourmap
+  ColourMap jet (int number = 101);
+
+
 
   //! VT100 code to set the cursor position to the top left of the screen
   /**
@@ -192,7 +199,6 @@ namespace TG {
    * Display an indexed image to the terminal, according to the colourmap supplied.
    *
    * ImageType can be any object that implements the following methods:
-   *
    *     int width() const
    *     int height() const
    *     integer_type operator() (int x, int y) const
@@ -201,7 +207,7 @@ namespace TG {
    * associated ColourMap. Different image values can have completely different
    * colours, depending on the ColourMap used.
    *
-   * The ColourMap must be specified via the `cmap` argument. See the
+   * The ColourMap must be specified via the cmap argument. See the
    * documentation for ColourMap for details.
    */
   template <class ImageType>
@@ -213,21 +219,19 @@ namespace TG {
    * according to the (optional) colourmap supplied.
    *
    * ImageType can be any object that implements the following methods:
-   *
    *     int width() const
    *     int height() const
    *     scalar_type operator() (int x, int y) const
-   *
-   * (where `scalar_type` can be any integer or floating-point type)
+   *         (where scalar_type can be any integer or floating-point type)
    *
    * Note that as for most image formats, the x index rasters from left to
    * right, while the y index rasters from top to bottom.
    *
-   * `min` & `max` specify how image values map to displayed intensities.
-   * Values <= `min` will render as pure black, while values >= `max`
+   * min & max specify how image values map to displayed intensities.
+   * Values <= min will render as pure black, while values >= max
    * will render as pure white (assuming the default gray colourmap).
    *
-   * A different colourmap can be specified via the `cmap` argument. See the
+   * A different colourmap can be specified via the cmap argument. See the
    * documentation for ColourMap for details on how to generate different
    * colourmaps if necessary.
    */
@@ -268,7 +272,7 @@ namespace TG {
    * A class to provide plotting capabilities
    *
    * This can be used stand-alone, but it is easier to use it via the
-   * TG::plot() function, which essentially simply returns an (anonymous) TG::Plot
+   * TH::plot() function, which essentially simply returns an (anonymous) TG::Plot
    * Object (refer to the documentation for TG::plot() for details).
    *
    * This class provides a canvas initialised to the desired size (in pixels),
@@ -455,15 +459,15 @@ namespace TG {
   //                   ColourMap implementation
   // **************************************************************************
 
+  namespace {
+    inline ctype clamp (float val, int number) {
+      return ctype (std::round (std::min (std::max ((100.0/number)*val, 0.0), static_cast<double>(number))));
+    }
+  }
+
+
   inline ColourMap gray (int number)
   {
-    // lambda function to clamp incoming value between 0 & 100 and round to
-    // nearest integer:
-    auto clamp = [](float val, int number)
-    {
-      return ctype (std::round (std::min (std::max ((100.0/number)*val, 0.0), static_cast<double>(number))));
-    };
-
     ColourMap cmap (number);
     for (int n = 0; n < number; ++n) {
       ctype c = clamp (n, number-1);
@@ -473,7 +477,32 @@ namespace TG {
   }
 
 
+  inline ColourMap hot (int number)
+  {
+    ColourMap cmap (number);
+    for (int n = 0; n < number; ++n) {
+      cmap[n] = {
+        clamp (3*n, number-1),
+        clamp (3*n-number, number-1),
+        clamp (3*n-2*number, number-1)
+      };
+    }
+    return cmap;
+  }
 
+
+  inline ColourMap jet (int number)
+  {
+    ColourMap cmap (number);
+    for (int n = 0; n < number; ++n) {
+      cmap[n] = {
+        clamp (1.5*number-std::abs(4*n-3*number), number-1),
+        clamp (1.5*number-std::abs(4*n-2*number), number-1),
+        clamp (1.5*number-std::abs(4*n-1*number), number-1)
+      };
+    }
+    return cmap;
+  }
 
 
 
