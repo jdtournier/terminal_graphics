@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['plot_0',['Plot',['../classTG_1_1Plot.html',1,'TG']]]
+  ['magnify_0',['magnify',['../classTG_1_1magnify.html',1,'TG']]]
 ];

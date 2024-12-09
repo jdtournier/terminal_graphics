@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['render_0',['render',['../classTG_1_1Font.html#a64172eeffa274dc2c1c6644eab48810e',1,'TG::Font']]],
-  ['rescale_1',['Rescale',['../classTG_1_1Rescale.html#abcd22621d66b55f72ef6c5a3df40ec9e',1,'TG::Rescale']]],
-  ['reset_2',['reset',['../classTG_1_1Plot.html#a8ea93d575075178535d47584b17f8570',1,'TG::Plot']]]
+  ['operator_28_29_0',['operator()',['../classTG_1_1Image.html#ab32f3e414e801fb55a3599a0ce8ee9e7',1,'TG::Image::operator()(int x, int y)'],['../classTG_1_1Image.html#a88752878acaaf8c7b99a566aa4ec02ea',1,'TG::Image::operator()(int x, int y) const'],['../classTG_1_1Rescale.html#a1d755dfb2426550069c5fff073fe4098',1,'TG::Rescale::operator()()'],['../classTG_1_1magnify.html#a7386322aabea787bbe2580d42a368e72',1,'TG::magnify::operator()()']]]
 ];
