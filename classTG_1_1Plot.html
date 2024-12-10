@@ -95,6 +95,9 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">TG::Plot Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A class to provide plotting capabilities.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -136,9 +139,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afdd8302a4e053db0e2867e170ce8acab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A class to provide plotting capabilities</p>
-<p>This can be used stand-alone, but it is easier to use it via the TH::plot() function, which essentially simply returns an (anonymous) <a class="el" href="classTG_1_1Plot.html">TG::Plot</a> Object (refer to the documentation for <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot()</a> for details).</p>
-<p>This class provides a canvas initialised to the desired size (in pixels), with a default font size (6 pixels wide by default). The <code>show_on_destruct</code> argument is <code>false</code> by default, but that be set to <code>true</code> to ensure the class destructor calls <a class="el" href="#aca5da57684d9a6e1300a9c366f9b2643" title="display the plot to the terminal">show()</a> when the class goes out of scope (this is what the <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot()</a> function relies on).</p>
+<div class="textblock"><p>A class to provide plotting capabilities. </p>
+<p>This can be used stand-alone, but it is easier to use it via the <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e" title="Convenience function to use for immediate rendering.">TG::plot()</a> function, which essentially simply returns an (anonymous) <a class="el" href="classTG_1_1Plot.html" title="A class to provide plotting capabilities.">TG::Plot</a> Object (refer to the documentation for <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e" title="Convenience function to use for immediate rendering.">TG::plot()</a> for details).</p>
+<p>This class provides a canvas initialised to the desired size (in pixels), with a default font size (6 pixels wide by default). The <code>show_on_destruct</code> argument is <code>false</code> by default, but that be set to <code>true</code> to ensure the class destructor calls <a class="el" href="#aca5da57684d9a6e1300a9c366f9b2643" title="display the plot to the terminal">show()</a> when the class goes out of scope (this is what the <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e" title="Convenience function to use for immediate rendering.">TG::plot()</a> function relies on).</p>
 <p>By default, the colourmap is set to:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -160,7 +163,7 @@ Public Member Functions</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyCenter">7   </td><td class="markdownTableBodyCenter">0   </td><td class="markdownTableBodyCenter">0   </td><td class="markdownTableBodyCenter">100   </td><td class="markdownTableBodyNone">blue   </td></tr>
 </table>
-<p>Most methods return a reference to the current instance. This allows them to be daisy-chained like this (again, this is what the <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot()</a> syntax relies on): </p><pre class="fragment">std::vector&lt;float&gt; data (10);
+<p>Most methods return a reference to the current instance. This allows them to be daisy-chained like this (again, this is what the <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e" title="Convenience function to use for immediate rendering.">TG::plot()</a> syntax relies on): </p><pre class="fragment">std::vector&lt;float&gt; data (10);
 ...
 Plot p (256, 128);
 p.set_xlim (0,10).set_ylim (-1,1).add_line(data).show();
@@ -283,7 +286,7 @@ p.set_xlim (0,10).set_ylim (-1,1).add_line(data).show();
 
 <p>display the plot to the terminal </p>
 <p>This is to be called after all rendering instructions have been invoked and the plot is ready to be displayed.</p>
-<p>If the plot has been constructed with <code>show_on_destruct</code> set to <code>true</code>, this will automatically be invoked by the destructor (this is the default behaviour when using the <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e">TG::plot()</a> function). </p>
+<p>If the plot has been constructed with <code>show_on_destruct</code> set to <code>true</code>, this will automatically be invoked by the destructor (this is the default behaviour when using the <a class="el" href="namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e" title="Convenience function to use for immediate rendering.">TG::plot()</a> function). </p>
 
 </div>
 </div>
