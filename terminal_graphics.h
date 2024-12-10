@@ -66,17 +66,15 @@
 
 
 
-/**
- * The namespace within which all functionality is placed
- */
+
+//! The namespace within which all functionality is placed
 namespace TG {
 
-  // the data type to use to store intensities:
+  //! the data type to use to store intensities:
   using ctype = unsigned char;
 
+  //! The data structure used to hold a colourmap
   /**
-   * The data structure used to hold a colourmap
-   *
    * A ColourMap is a way to associate an index with a colour. It can be
    * represented as a simple table with 3 columns per row, to represent the
    * red, green & blue components of each colour, one colour per row. When in
@@ -105,13 +103,13 @@ namespace TG {
    */
   using ColourMap = std::vector<std::array<ctype,3>>;
 
-  //* convenience function to generate ready-made grayscale colourmap
+  //! convenience function to generate a ready-made grayscale colourmap
   ColourMap gray (int number = 101);
 
-  //* convenience function to generate ready-made hot colourmap
+  //! convenience function to generate a ready-made hot colourmap
   ColourMap hot (int number = 101);
 
-  //* convenience function to generate ready-made jet colourmap
+  //! convenience function to generate a ready-made jet colourmap
   ColourMap jet (int number = 101);
 
 
@@ -140,10 +138,7 @@ namespace TG {
    */
   constexpr std::string Clear = "\033[2J";
 
-  /**
-   * A simple class to hold a 2D image using datatype specified as `ValueType`
-   * template parameter
-   */
+  //! A simple class to hold a 2D image using datatype specified as `ValueType` template parameter
   template <typename ValueType>
     class Image {
       public:
@@ -170,8 +165,8 @@ namespace TG {
 
 
 
-  /** Adapter class to rescale intensities of image to colourmap indices
-   *
+  //! Adapter class to rescale intensities of image to colourmap indices
+  /**
    * Rescale intensities of image from (min, max) to the range of indices
    * in the specified colourmap, rounding to the nearest integer index, and
    * clamping the values to the [ min max ] range.
@@ -193,8 +188,8 @@ namespace TG {
 
 
 
-  /** Adapter class to magnify an image
-   *
+  //! Adapter class to magnify an image
+  /**
    * This makes the image `factor` bigger than the original.
    */
   template <class ImageType>
@@ -215,9 +210,8 @@ namespace TG {
 
 
 
+  //! Display an indexed image to the terminal, according to the colourmap supplied.
   /**
-   * Display an indexed image to the terminal, according to the colourmap supplied.
-   *
    * ImageType can be any object that implements the following methods:
    *     int width() const
    *     int height() const
@@ -227,17 +221,15 @@ namespace TG {
    * associated ColourMap. Different image values can have completely different
    * colours, depending on the ColourMap used.
    *
-   * The ColourMap must be specified via the cmap argument. See the
+   * The ColourMap must be specified via the `cmap` argument. See the
    * documentation for ColourMap for details.
    */
   template <class ImageType>
     void imshow (const ImageType& image, const ColourMap& cmap);
 
 
+  //! Display a scalar image to the terminal, rescaled between (min, max)
   /**
-   * Display a scalar image to the terminal, rescaled between (min, max),
-   * according to the (optional) colourmap supplied.
-   *
    * ImageType can be any object that implements the following methods:
    *     int width() const
    *     int height() const
@@ -247,11 +239,11 @@ namespace TG {
    * Note that as for most image formats, the x index rasters from left to
    * right, while the y index rasters from top to bottom.
    *
-   * min & max specify how image values map to displayed intensities.
-   * Values <= min will render as pure black, while values >= max
+   * `min` & `max` specify how image values map to displayed intensities.
+   * Values <= `min` will render as pure black, while values >= `max`
    * will render as pure white (assuming the default gray colourmap).
    *
-   * A different colourmap can be specified via the cmap argument. See the
+   * A different colourmap can be specified via the `cmap` argument. See the
    * documentation for ColourMap for details on how to generate different
    * colourmaps if necessary.
    */
@@ -262,9 +254,8 @@ namespace TG {
 
 
 
+  //! A class to hold the information about the font used for text rendering
   /**
-   * A class to hold the information about the font used for text rendering
-   *
    * This is should not need to be used directly outside of this file.
    */
   class Font {
@@ -288,11 +279,10 @@ namespace TG {
 
 
 
+  //! A class to provide plotting capabilities
   /**
-   * A class to provide plotting capabilities
-   *
    * This can be used stand-alone, but it is easier to use it via the
-   * TH::plot() function, which essentially simply returns an (anonymous) TG::Plot
+   * TG::plot() function, which essentially simply returns an (anonymous) TG::Plot
    * Object (refer to the documentation for TG::plot() for details).
    *
    * This class provides a canvas initialised to the desired size (in pixels),
@@ -435,8 +425,8 @@ namespace TG {
       float mapy (float y) const;
   };
 
-  /** Convenience function to use for immediate rendering
-   *
+  //! Convenience function to use for immediate rendering
+  /**
    * This returns a (temporary) Plot object, which methods can be called on,
    * and daisy-chain to achieve the desired series of commands. The
    * Plot::show() method will implicitly be called when the temporary object is
