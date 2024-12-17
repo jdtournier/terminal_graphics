@@ -1016,8 +1016,6 @@ namespace TG {
         69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86,
         87, 88, 89, 90, 91, 92, 93, 94, 0
       };
-      if (c >= 128)
-        c = 63;
 
       c = mapping[static_cast<int>(c)];
       for (int j = std::max (0,-y); j < h - std::max (0,y+h-canvas.height()); ++j)
