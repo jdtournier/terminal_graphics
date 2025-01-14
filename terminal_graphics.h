@@ -213,9 +213,9 @@ namespace TG {
   //! Display an indexed image to the terminal, according to the colourmap supplied.
   /**
    * ImageType can be any object that implements the following methods:
-   *     int width() const
-   *     int height() const
-   *     integer_type operator() (int x, int y) const
+   * - `int width() const`
+   * - `int height() const`
+   * - `integer_type operator() (int x, int y) const`
    *
    * Indexed images contain integer values that correspond to entries in the
    * associated ColourMap. Different image values can have completely different
@@ -231,10 +231,10 @@ namespace TG {
   //! Display a scalar image to the terminal, rescaled between (min, max)
   /**
    * ImageType can be any object that implements the following methods:
-   *     int width() const
-   *     int height() const
-   *     scalar_type operator() (int x, int y) const
-   *         (where scalar_type can be any integer or floating-point type)
+   * - `int width() const`
+   * - `int height() const`
+   * - `scalar_type operator() (int x, int y) const`
+   *   (where scalar_type can be any integer or floating-point type)
    *
    * Note that as for most image formats, the x index rasters from left to
    * right, while the y index rasters from top to bottom.
