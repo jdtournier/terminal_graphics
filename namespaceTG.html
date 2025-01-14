@@ -314,7 +314,11 @@ template&lt;class ImageType &gt; </div>
 </div><div class="memdoc">
 
 <p>Display an indexed image to the terminal, according to the colourmap supplied. </p>
-<p>ImageType can be any object that implements the following methods: int width() const int height() const integer_type operator() (int x, int y) const</p>
+<p>ImageType can be any object that implements the following methods:</p><ul>
+<li><code>int width() const</code></li>
+<li><code>int height() const</code></li>
+<li><code>integer_type operator() (int x, int y) const</code></li>
+</ul>
 <p>Indexed images contain integer values that correspond to entries in the associated ColourMap. Different image values can have completely different colours, depending on the ColourMap used.</p>
 <p>The ColourMap must be specified via the <code>cmap</code> argument. See the documentation for ColourMap for details. </p>
 
@@ -360,7 +364,11 @@ template&lt;class ImageType &gt; </div>
 </div><div class="memdoc">
 
 <p>Display a scalar image to the terminal, rescaled between (min, max) </p>
-<p>ImageType can be any object that implements the following methods: int width() const int height() const scalar_type operator() (int x, int y) const (where scalar_type can be any integer or floating-point type)</p>
+<p>ImageType can be any object that implements the following methods:</p><ul>
+<li><code>int width() const</code></li>
+<li><code>int height() const</code></li>
+<li><code>scalar_type operator() (int x, int y) const</code> (where scalar_type can be any integer or floating-point type)</li>
+</ul>
 <p>Note that as for most image formats, the x index rasters from left to right, while the y index rasters from top to bottom.</p>
 <p><code>min</code> &amp; <code>max</code> specify how image values map to displayed intensities. Values &lt;= <code>min</code> will render as pure black, while values &gt;= <code>max</code> will render as pure white (assuming the default gray colourmap).</p>
 <p>A different colourmap can be specified via the <code>cmap</code> argument. See the documentation for ColourMap for details on how to generate different colourmaps if necessary. </p>
