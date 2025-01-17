@@ -783,6 +783,10 @@ namespace TG {
     margin_y = 2*font.height();
     reset();
 
+    // disable deprecation warning for getenv() from Visual Studio
+    // our usage should be safe given we only check whether variable is set
+    // the value of the variable is never accessed
+#pragma warning(disable : 4996)
     if (std::getenv("WHITEBG") != nullptr)
       for (auto& x : cmap)
         for (auto& c : x)
