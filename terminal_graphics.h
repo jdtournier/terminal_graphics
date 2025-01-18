@@ -709,7 +709,7 @@ namespace TG {
   template <class ImageType>
     inline void imshow (const ImageType& image, const ColourMap& cmap)
     {
-      std::string out = "\033P9q" + colourmap_specifier (cmap);
+      std::string out = "\033P9;1q" + colourmap_specifier (cmap);
       for (int y = 0; y < image.height(); y += 6)
         out += encode (image, cmap.size(), y);
       out += "\033\\\n";
