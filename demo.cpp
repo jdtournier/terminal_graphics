@@ -21,11 +21,11 @@ int main (int argc, char* argv[])
     std::cout << std::format ("Showing image \"{}\", size: {} x {}\n", image_filename, image.width(), image.height());
     TG::imshow (image, 0, 255);
 
-    std::cout << "Same image magnified by a factor of 2:\n";
-    TG::imshow (TG::magnify (image, 2), 0, 255);
+    std::cout << "Same image magnified by a factor of 2, with transparency:\n";
+    TG::imshow (TG::magnify (image, 2), 0, 255, true);
 
 
-    // demonstate use of TG::plot():
+    // demonstrate use of TG::plot():
 
     std::vector<float> x (50);
     std::vector<float> y (50);
@@ -46,8 +46,9 @@ int main (int argc, char* argv[])
       x[n] = 20.0+10.0*std::cos (0.41*n) + 5.0*std::sin(0.21*n);
     }
 
-    std::cout << "Plotting arbitrary lines:\n";
+    std::cout << "Plotting arbitrary lines, without transparency:\n";
     TG::plot (768, 256)
+      .disable_transparency()
       .add_line (y, 4, 10)
       .add_line (x, y, 3)
       .add_text ("sinusoids", (x.size()-1)/2.0, 1.2, 0.5, 0.0, 6);

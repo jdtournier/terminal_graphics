@@ -39,8 +39,8 @@
  * are known to have the necessary capabilities:
  *
  * - Linux: WezTerm, mlTerm, xterm
- * - macOS: iTerm2
- * - Windows:minTTY
+ * - macOS: WezTerm, iTerm2
+ * - Windows: WezTerm, minTTY, Windows Terminal (Preview)
  *
  * To use in your code, place this file alongside your own code, and \#include
  * the file where necessary:
@@ -57,6 +57,13 @@
  *
  * For a more complete list of all of the available functionality, refer to the
  * TG namespace.
+ *
+ * By default, the colours are set up for use on a terminal with a dark
+ * background. When using a light background, set the `WHITEBG` environment
+ * variable. For example, in `bash`:
+ * ```
+ * $ export WHITEBG=1
+ * ```
  *
  * Refer to the example code in `demo.cpp` (reproduced below) to see how to use
  * this functionality:
@@ -225,7 +232,7 @@ namespace TG {
    * documentation for ColourMap for details.
    */
   template <class ImageType>
-    void imshow (const ImageType& image, const ColourMap& cmap);
+    void imshow (const ImageType& image, const ColourMap& cmap, const bool zero_is_transparent = false);
 
 
   //! Display a scalar image to the terminal, rescaled between (min, max)
@@ -248,7 +255,7 @@ namespace TG {
    * colourmaps if necessary.
    */
   template <class ImageType>
-    void imshow (const ImageType& image, double min, double max, const ColourMap& cmap = gray());
+    void imshow (const ImageType& image, double min, double max, const bool zero_is_transparent = false, const ColourMap& cmap = gray());
 
 
 
@@ -341,6 +348,9 @@ namespace TG {
       //! set the colourmap if the default is not appropriate
       Plot& set_colourmap (const ColourMap& colourmap);
 
+      //! disable transparent background for plot
+      Plot& disable_transparency ();
+
       //! add a single line connection point (x0,y0) to (x1,y1).
       /** If the X and/or Y limits have not yet been set (using set_xlim() or
        * set_ylim(), this will automatically set them to 10% wider than the
@@ -416,6 +426,7 @@ namespace TG {
       std::array<float,2> xlim, ylim;
       float xgrid, ygrid;
       int margin_x, margin_y;
+      bool zero_is_transparent;
 
       template <class ImageType>
         static void line_x (ImageType& canvas, float x0, float y0, float x1, float y1,
@@ -423,6 +434,9 @@ namespace TG {
 
       float mapx (float x) const;
       float mapy (float y) const;
+
+      static ColourMap default_cmap;
+      static const ColourMap& get_default_cmap();
   };
 
   //! Convenience function to use for immediate rendering
@@ -444,7 +458,10 @@ namespace TG {
    *
    * See methods in TG::Plot for details.
    */
-  inline Plot plot (int width = 512, int height = 256) { return Plot (width, height, true); }
+  inline Plot plot (int width = 512, int height = 256)
+  {
+    return Plot (width, height, true);
+  }
 
 
 
@@ -680,13 +697,13 @@ namespace TG {
 
 
     template <class ImageType>
-      inline std::string encode (const ImageType& im, int cmap_size, int y0)
+      inline std::string encode (const ImageType& im, int cmap_start, int cmap_end, int y0)
       {
         std::string out;
         const int nsixels = std::min (im.height()-y0, 6);
 
         bool first = true;
-        for (ctype intensity = 0; intensity < cmap_size; ++intensity) {
+        for (ctype intensity = cmap_start; intensity < cmap_end; ++intensity) {
           std::string row = encode_row (im, y0, im.width(), nsixels, intensity);
           if (row.size()) {
             if (first) first = false;
@@ -707,11 +724,11 @@ namespace TG {
 
 
   template <class ImageType>
-    inline void imshow (const ImageType& image, const ColourMap& cmap)
+    inline void imshow (const ImageType& image, const ColourMap& cmap, const bool zero_is_transparent)
     {
       std::string out = "\033P9;1q" + colourmap_specifier (cmap);
       for (int y = 0; y < image.height(); y += 6)
-        out += encode (image, cmap.size(), y);
+        out += encode (image, ( zero_is_transparent ? 1 : 0 ), cmap.size(), y);
       out += "\033\\\n";
       std::cout.write (out.data(), out.size());
       std::cout.flush();
@@ -720,10 +737,10 @@ namespace TG {
 
 
   template <class ImageType>
-    inline void imshow (const ImageType& image, double min, double max, const ColourMap& cmap)
+    inline void imshow (const ImageType& image, double min, double max, const bool zero_is_transparent, const ColourMap& cmap)
     {
       Rescale<ImageType> rescaled (image, min, max, cmap.size());
-      imshow (rescaled, cmap);
+      imshow (rescaled, cmap, zero_is_transparent);
     }
 
 
@@ -736,6 +753,36 @@ namespace TG {
   // **************************************************************************
   //                   Plot implementation
   // **************************************************************************
+
+  inline ColourMap Plot::default_cmap;
+
+  inline const ColourMap& Plot::get_default_cmap()
+  {
+    if (default_cmap.empty()) {
+      default_cmap = {
+        {   0,   0,   0 },
+        { 100, 100, 100 },
+        { 100, 100,  20 },
+        { 100,  20, 100 },
+        {  20, 100, 100 },
+        { 100,  20,  20 },
+        {  20, 100,  20 },
+        {  20,  20, 100 }
+        };
+
+    // disable deprecation warning for getenv() from Visual Studio
+    // our usage should be safe given we only check whether variable is set
+    // the value of the variable is never accessed
+#ifdef _MSC_VER
+#pragma warning(disable : 4996)
+#endif
+    if (std::getenv("WHITEBG") != nullptr)
+      for (auto& x : default_cmap)
+        for (auto& c : x)
+          c = 100-c;
+    }
+    return default_cmap;
+  }
 
 
   constexpr float lim_expand_by_factor = 0.1f;
@@ -768,29 +815,12 @@ namespace TG {
     show_on_destruct (show_on_destruct),
     font (Font::get_font()),
     canvas (width, height),
-    cmap ({
-        {   0,   0,   0 },
-        { 100, 100, 100 },
-        { 100, 100,  20 },
-        { 100,  20, 100 },
-        {  20, 100, 100 },
-        { 100,  20,  20 },
-        {  20, 100,  20 },
-        {  20,  20, 100 }
-        })
+    cmap (get_default_cmap()),
+    zero_is_transparent (true)
   {
     margin_x = 10*font.width();
     margin_y = 2*font.height();
     reset();
-
-    // disable deprecation warning for getenv() from Visual Studio
-    // our usage should be safe given we only check whether variable is set
-    // the value of the variable is never accessed
-#pragma warning(disable : 4996)
-    if (std::getenv("WHITEBG") != nullptr)
-      for (auto& x : cmap)
-        for (auto& c : x)
-          c = 100-c;
   }
 
   inline Plot::~Plot ()
@@ -808,7 +838,7 @@ namespace TG {
     return *this;
   }
 
-  inline Plot& Plot::show()
+  inline Plot& Plot::show ()
   {
     if (std::isfinite (xgrid)) {
       for (float x = xgrid*std::ceil (xlim[0]/xgrid); x < xlim[1]; x += xgrid) {
@@ -831,7 +861,7 @@ namespace TG {
       }
     }
 
-    imshow (canvas, cmap);
+    imshow (canvas, cmap, zero_is_transparent);
 
     return *this;
   }
@@ -839,6 +869,12 @@ namespace TG {
   inline Plot& Plot::set_colourmap (const ColourMap& colourmap)
   {
     cmap = colourmap;
+    return *this;
+  }
+
+  inline Plot& Plot::disable_transparency ()
+  {
+    zero_is_transparent = false;
     return *this;
   }
 

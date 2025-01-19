@@ -14,8 +14,8 @@ g++ -std=c++20 demo.cpp -o demo
 
 To work, this requires a sixel-capable terminal, such as:
 - on Linux: wezterm, xterm, mlterm
-- on macOS: iTerm2
-- on Windows: minTTY
+- on macOS: wezterm, iTerm2
+- on Windows: wezterm, minTTY, Windows Terminal (preview)
 
 
 ## Usage
