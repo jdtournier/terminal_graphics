@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['height_0',['height',['../classTG_1_1Image.html#ad57f790e1a1863f91b67c3b287ad10b6',1,'TG::Image::height()'],['../classTG_1_1Rescale.html#a8eae42de110bb53aa908b55d6785f1d9',1,'TG::Rescale::height()'],['../classTG_1_1magnify.html#a0b217aeb621bf0329bbf58c676e1852c',1,'TG::magnify::height()'],['../classTG_1_1Font.html#a27fce1186de8a87108e0eaccd5a28e27',1,'TG::Font::height()']]],
-  ['hot_1',['hot',['../namespaceTG.html#ad124618239f42bae4ec327ab4c4ec6a6',1,'TG']]]
+  ['get_0',['get',['../classTG_1_1Font.html#a0d405cb5f3df7f576e257bd0d18e5e73',1,'TG::Font']]],
+  ['get_5ffont_1',['get_font',['../classTG_1_1Font.html#acba8f33d985f1eeac12f43be7267b645',1,'TG::Font']]],
+  ['gray_2',['gray',['../namespaceTG.html#a79807e40039f5614eb37f9d62f32c3b8',1,'TG']]]
 ];

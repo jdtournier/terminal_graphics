@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['width_0',['width',['../classTG_1_1Image.html#a22c520a936ba1239e88822073a76880e',1,'TG::Image::width()'],['../classTG_1_1Rescale.html#a9df72887de5af7f976dce42563d0fde7',1,'TG::Rescale::width()'],['../classTG_1_1magnify.html#ac84a1739053d99548913596ec8f5a9f7',1,'TG::magnify::width()'],['../classTG_1_1Font.html#a870eeb21f0cdaf69ca51c25217986b86',1,'TG::Font::width()']]]
+  ['set_5fcolourmap_0',['set_colourmap',['../classTG_1_1Plot.html#af420ce11fced42547f2eaf8c53299f10',1,'TG::Plot']]],
+  ['set_5fgrid_1',['set_grid',['../classTG_1_1Plot.html#afdd8302a4e053db0e2867e170ce8acab',1,'TG::Plot']]],
+  ['set_5fxlim_2',['set_xlim',['../classTG_1_1Plot.html#a146a9004b63c3614f03a8a2b088878d9',1,'TG::Plot']]],
+  ['set_5fylim_3',['set_ylim',['../classTG_1_1Plot.html#a18c791a7aca2b549e21f7902fe7cad90',1,'TG::Plot']]],
+  ['show_4',['show',['../classTG_1_1Plot.html#aca5da57684d9a6e1300a9c366f9b2643',1,'TG::Plot']]]
 ];
