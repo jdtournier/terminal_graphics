@@ -138,12 +138,12 @@ namespace TG {
    * ```
    * \sa TG::Clear
    */
-  constexpr std::string Home = "\033[H";
+  const std::string Home = "\033[H";
 
   //! VT100 code to clear the screen
    /** \sa TG::Home
    */
-  constexpr std::string Clear = "\033[2J";
+  const std::string Clear = "\033[2J";
 
   //! A simple class to hold a 2D image using datatype specified as `ValueType` template parameter
   template <typename ValueType>
