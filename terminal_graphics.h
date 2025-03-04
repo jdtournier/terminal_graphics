@@ -987,7 +987,7 @@ namespace TG {
 
 
 
-  Plot& Plot::add_text (const std::string& text, float x, float y,
+  inline Plot& Plot::add_text (const std::string& text, float x, float y,
       float anchor_x, float anchor_y, int colour_index)
   {
     auto f = Font::get_font();
