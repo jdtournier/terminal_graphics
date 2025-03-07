@@ -255,7 +255,7 @@ namespace TG {
    * colourmaps if necessary.
    */
   template <class ImageType>
-    void imshow (const ImageType& image, double min, double max, const bool zero_is_transparent = false, const ColourMap& cmap = gray());
+    void imshow (const ImageType& image, double min, double max, const ColourMap& cmap = gray(), const bool zero_is_transparent = false);
 
 
 
@@ -737,7 +737,7 @@ namespace TG {
 
 
   template <class ImageType>
-    inline void imshow (const ImageType& image, double min, double max, const bool zero_is_transparent, const ColourMap& cmap)
+    inline void imshow (const ImageType& image, double min, double max, const ColourMap& cmap, const bool zero_is_transparent)
     {
       Rescale<ImageType> rescaled (image, min, max, cmap.size());
       imshow (rescaled, cmap, zero_is_transparent);
