@@ -21,8 +21,8 @@ int main (int argc, char* argv[])
       << "\", size: " << image.width() << " x " << image.height() << "\n";
     TG::imshow (image, 0, 255);
 
-    std::cout << "Same image magnified by a factor of 2, with transparency:\n";
-    TG::imshow (TG::magnify (image, 2), 0, 255, true);
+    std::cout << "Same image using hot colourmap, magnified by a factor of 2, with transparency:\n";
+    TG::imshow (TG::magnify (image, 2), 0, 255, TG::hot(), true);
 
 
     // demonstrate use of TG::plot():
