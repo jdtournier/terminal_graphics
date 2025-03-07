@@ -16,7 +16,6 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <format>
 #include <vector>
 #include <array>
 #include <ranges>
@@ -267,7 +266,7 @@ namespace TG {
    */
   class Font {
     public:
-      constexpr Font (int width, int height, const std::span<const unsigned char>& data);
+      constexpr Font (int width, int height, const unsigned char* data);
 
       constexpr int width () const;
       constexpr int height () const;
@@ -280,7 +279,7 @@ namespace TG {
 
     private:
       const int w, h;
-      const std::span<const unsigned char> data;
+      const unsigned char* const data;
   };
 
 
@@ -645,8 +644,10 @@ namespace TG {
       int n = 0;
       std::string specifier;
       for (const auto& c : colours)
-        specifier += std::format ("#{};2;{};{};{}",
-            n++, static_cast<int>(c[0]), static_cast<int>(c[1]),static_cast<int>(c[2]));
+        specifier += "#" + std::to_string(n++) + ";2;"
+          + std::to_string(static_cast<int>(c[0])) + ";"
+          + std::to_string(static_cast<int>(c[1])) + ";"
+          + std::to_string(static_cast<int>(c[2]));
       return specifier;
     }
 
@@ -660,7 +661,7 @@ namespace TG {
           out.put (63+current);
       }
       else
-        out << std::format ("!{}{}", repeats, char(63+current));
+        out << "!" << repeats << char(63+current);
     }
 
 
@@ -708,7 +709,7 @@ namespace TG {
           if (row.size()) {
             if (first) first = false;
             else out += '$';
-            out += std::format ("#{}{}", static_cast<int>(intensity), row);
+            out += "#" + std::to_string(static_cast<int>(intensity)) + row;
           }
         }
         out += '-';
@@ -955,8 +956,10 @@ namespace TG {
       if (!std::isfinite (xlim[0]) || !std::isfinite (xlim[1]))
         set_xlim (0, y.size()-1, 0.0);
 
-      if (!std::isfinite (ylim[0]) || !std::isfinite (ylim[1]))
-        set_ylim (std::ranges::min (y), std::ranges::max (y), lim_expand_by_factor);
+      if (!std::isfinite (ylim[0]) || !std::isfinite (ylim[1])) {
+        auto minmax = std::minmax_element (y.begin(), y.end());
+        set_ylim (*minmax.first, *minmax.second, lim_expand_by_factor);
+      }
 
       for (std::size_t n = 0; n < y.size()-1; ++n)
         add_line (n, y[n], n+1, y[n+1], colour_index, stiple, stiple_frac);
@@ -972,11 +975,15 @@ namespace TG {
       if (x.size() != y.size())
         throw std::runtime_error ("number of x & y vertices do not match");
 
-      if (!std::isfinite (xlim[0]) || !std::isfinite (xlim[1]))
-        set_xlim (std::ranges::min (x), std::ranges::max (x), lim_expand_by_factor);
+      if (!std::isfinite (xlim[0]) || !std::isfinite (xlim[1])) {
+        auto minmax = std::minmax_element (x.begin(), x.end());
+        set_xlim (*minmax.first, *minmax.second, lim_expand_by_factor);
+      }
 
-      if (!std::isfinite (ylim[0]) || !std::isfinite (ylim[1]))
-        set_ylim (std::ranges::min (y), std::ranges::max (y), lim_expand_by_factor);
+      if (!std::isfinite (ylim[0]) || !std::isfinite (ylim[1])) {
+        auto minmax = std::minmax_element (y.begin(), y.end());
+        set_ylim (*minmax.first, *minmax.second, lim_expand_by_factor);
+      }
 
       for (std::size_t n = 0; n < x.size()-1; ++n)
         add_line (x[n], y[n], x[n+1], y[n+1], colour_index, stiple, stiple_frac);
@@ -1029,7 +1036,7 @@ namespace TG {
   // **************************************************************************
 
 
-  inline constexpr Font::Font (int width, int height, const std::span<const unsigned char>& data) :
+  inline constexpr Font::Font (int width, int height, const unsigned char* data) :
     w (width), h (height), data (data) { }
 
   inline constexpr int Font::width() const { return w; }
@@ -1073,7 +1080,7 @@ namespace TG {
     // This is a straight bit-wise raster of the Unifont glyphs in the ASCII
     // visible range.
 
-    constexpr std::array<const unsigned char,3420> unifont8x16= {
+    constexpr unsigned char unifont8x16[] = {
       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,8,8,8,8,8,0,8,8,0,0,0,0,34,34,34,34,0,
       0,0,0,0,0,0,0,0,0,0,0,0,0,36,36,36,63,18,18,63,9,9,9,0,0,0,0,0,0,8,62,73,9,14,56,
       72,73,62,8,0,0,0,0,0,0,70,41,41,22,8,8,52,74,74,49,0,0,0,0,0,0,28,34,34,20,12,74,
@@ -1125,7 +1132,7 @@ namespace TG {
   {
     switch (size) {
       case 16: return { 8, 16, unifont8x16 };
-      default: throw std::runtime_error (std::format ("font size {} not supported", size));
+      default: throw std::runtime_error ("font size " + std::to_string(size) + " not supported");
     }
   }
 

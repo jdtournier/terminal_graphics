@@ -4,7 +4,6 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
-#include <format>
 
 #include "terminal_graphics.h"
 #include "load_pgm.h"
@@ -18,7 +17,8 @@ int main (int argc, char* argv[])
     const std::string image_filename = "brain.pgm";
 
     const auto image = load_pgm (image_filename);
-    std::cout << std::format ("Showing image \"{}\", size: {} x {}\n", image_filename, image.width(), image.height());
+    std::cout << "Showing image \"" << image_filename
+      << "\", size: " << image.width() << " x " << image.height() << "\n";
     TG::imshow (image, 0, 255);
 
     std::cout << "Same image using hot colourmap, magnified by a factor of 2, with transparency:\n";
