@@ -18,7 +18,6 @@
 #include <sstream>
 #include <vector>
 #include <array>
-#include <ranges>
 #include <limits>
 #include <cmath>
 #include <iomanip>
