@@ -17,6 +17,7 @@
 #include <string>
 #include <sstream>
 #include <format>
+#include <string_view>
 #include <vector>
 #include <array>
 #include <ranges>
@@ -138,12 +139,12 @@ namespace TG {
    * ```
    * \sa TG::Clear
    */
-  const std::string Home = "\033[H";
+  constexpr inline std::string_view Home = "\033[H";
 
   //! VT100 code to clear the screen
    /** \sa TG::Home
    */
-  const std::string Clear = "\033[2J";
+  constexpr inline std::string_view Clear = "\033[2J";
 
   //! A simple class to hold a 2D image using datatype specified as `ValueType` template parameter
   template <typename ValueType>
