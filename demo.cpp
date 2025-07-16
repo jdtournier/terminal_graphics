@@ -27,10 +27,7 @@ int main (int argc, char* argv[])
 
     // demonstrate use of TG::plot():
 
-    std::vector<float> x (50);
     std::vector<float> y (50);
-
-
 
     for (unsigned int x = 0; x < y.size(); ++x)
       y[x] = exp (-0.1*x) - 1.5*exp (-0.4*x);
@@ -41,6 +38,7 @@ int main (int argc, char* argv[])
 
 
 
+    std::vector<float> x (50);
     for (std::size_t n = 0; n < x.size();++n) {
       y[n] = std::sin (0.2*n) + 0.3*std::cos (0.33*n);
       x[n] = 20.0+10.0*std::cos (0.41*n) + 5.0*std::sin(0.21*n);
