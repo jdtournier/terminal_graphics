@@ -1,7 +1,7 @@
 # Terminal Graphics
 
-A simple header-only function to render images to terminal using the sixel
-protocol.
+A simple header-only function to render images to terminal using the
+[sixel](https://en.wikipedia.org/wiki/Sixel) protocol.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ To work, this requires a sixel-capable terminal, such as:
 
 ## Usage
 
-- copy the `terminal_graphics.h` file into your project
+- copy the `termviz.h` file into your project
 - include the file in the relevant code file
 - add rendering calls to your code
 - run in a sixel-capable terminal (see list above)

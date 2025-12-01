@@ -7,15 +7,15 @@
 #include <exception>
 #include <limits>
 
-#include "terminal_graphics.h"
+#include "termviz.h"
 
 
 // Simple function to load an ascii-encoded PGM grayscale image.
-// This returns an object of type TG::Image<ValueType>
+// This returns an object of type tv::Image<ValueType>
 
 
 template <typename ValueType = unsigned char>
-TG::Image<ValueType> load_pgm (const std::string& pgm_filename)
+termviz::Image<ValueType> load_pgm (const std::string& pgm_filename)
 {
   std::ifstream in (pgm_filename);
   if (!in)
@@ -44,7 +44,7 @@ TG::Image<ValueType> load_pgm (const std::string& pgm_filename)
   if (maxval > std::numeric_limits<ValueType>::max())
     throw std::runtime_error ("maximum intensity in PGM file \"" + pgm_filename + "\" exceeds range of data type used");
 
-  TG::Image<ValueType> im (xdim, ydim);
+  termviz::Image<ValueType> im (xdim, ydim);
 
   for (int y = 0; y < im.height(); ++y) {
     for (int x = 0; x < im.width(); ++x) {

@@ -6,26 +6,25 @@
 #include <fstream>
 #include <format>
 
-#include "terminal_graphics.h"
 #include "load_pgm.h"
+#include "termviz.h"
 
-
-int main (int argc, char* argv[])
+int main ()
 {
   try {
-    // demonstrate use of TG::imshow():
+    // demonstrate use of termviz::imshow():
 
     const std::string image_filename = "brain.pgm";
 
     const auto image = load_pgm (image_filename);
     std::cout << std::format ("Showing image \"{}\", size: {} x {}\n", image_filename, image.width(), image.height());
-    TG::imshow (image, 0, 255);
+    termviz::imshow (image, 0, 255);
 
     std::cout << "Same image using hot colourmap, magnified by a factor of 2, with transparency:\n";
-    TG::imshow (TG::magnify (image, 2), 0, 255, TG::hot(), true);
+    termviz::imshow (termviz::magnify (image, 2), 0, 255, termviz::hot(), true);
 
 
-    // demonstrate use of TG::plot():
+    // demonstrate use of termviz::plot():
 
     std::vector<float> y (50);
 
@@ -33,7 +32,7 @@ int main (int argc, char* argv[])
       y[x] = exp (-0.1*x) - 1.5*exp (-0.4*x);
 
     std::cout << "A simple one-line plot:\n";
-    TG::plot().add_line (y);
+    termviz::plot().line (y);
 
 
 
@@ -45,11 +44,11 @@ int main (int argc, char* argv[])
     }
 
     std::cout << "Plotting arbitrary lines, without transparency:\n";
-    TG::plot (768, 256)
-      .disable_transparency()
-      .add_line (y, 4, 10)
-      .add_line (x, y, 3)
-      .add_text ("sinusoids", (x.size()-1)/2.0, 1.2, 0.5, 0.0, 6);
+    termviz::plot (768, 256)
+      .transparent(false)
+      .line (y, 4, 10)
+      .line (x, y, 3)
+      .text ("sinusoids", (x.size()-1)/2.0, 1.2, 0.5, 0.0, 6);
 
 
 
@@ -67,10 +66,10 @@ int main (int argc, char* argv[])
       x = normal (gen);
 
     std::cout << "Plotting Normally distributed random variables:\n";
-    TG::plot (768, 256)
-      .set_ylim (-1, 11)
-      .set_grid (50, 2)
-      .add_line (noise,2);
+    termviz::plot (768, 256)
+      .ylim (-1, 11)
+      .grid (50, 2)
+      .line (noise,2);
 
   }
   catch (std::exception& e) {
