@@ -48,7 +48,7 @@ int main ()
       .transparent(false)
       .line (y, 4, 10)
       .line (x, y, 3)
-      .text ("sinusoids", (x.size()-1)/2.0, 1.2, 0.5, 0.0, 6);
+      .text ("sinusoids", (x.size()-1)/2.0, 1.1, 0.5, 0.0, 6);
 
 
 
@@ -66,7 +66,7 @@ int main ()
       x = normal (gen);
 
     std::cout << "Plotting Normally distributed random variables:\n";
-    termviz::plot (768, 256)
+    termviz::plot (1024, 512)
       .ylim (-1, 11)
       .grid (50, 2)
       .line (noise,2);

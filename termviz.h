@@ -275,7 +275,7 @@ namespace termviz {
     const ColourMap& get_default_cmap();
 
     struct End {
-      mutable std::array<int,2> canvas_size = { 512, 256 };
+      mutable std::array<int,2> canvas_size = { 768, 512 };
       mutable ColourMap cmap = get_default_cmap();
       mutable bool zero_is_transparent = true;
       mutable bool done = false;
@@ -389,7 +389,7 @@ namespace termviz {
   }
 
 
-  inline Entry<CanvasItem,End> plot (int width = 512, int height = 256) { return { { } , { width, height } }; }
+  inline Entry<CanvasItem,End> plot (int width = 900, int height = 300) { return { { } , { width, height } }; }
 
 
 
@@ -798,7 +798,23 @@ namespace termviz {
 
   namespace {
 
-    constexpr float lim_expand_by_factor = 0.1f;
+    inline float tick_spacing (const std::array<float,2>& lim, float init_spacing)
+    {
+      double tick = (lim[1]-lim[0])/init_spacing;
+      double mult = std::pow(10.0, std::floor (std::log10 (tick)));
+      double scaled = tick/mult;
+      if (scaled < 2.0)
+        return 2.0*mult;
+      if (scaled < 5.0)
+        return 5.0*mult;
+      return 10.0*mult;
+    }
+
+    inline void refine_lim (std::array<float,2>& lim, float spacing)
+    {
+      lim[0] = spacing * std::floor (lim[0] / spacing);
+      lim[1] = spacing * std::ceil (lim[1] / spacing);
+    }
 
     template <typename Item, typename Previous>
       inline void Entry<Item,Previous>::main_render () const {
@@ -811,17 +827,28 @@ namespace termviz {
         update_lim (xlim, ylim);
 
         auto xlim_set = get_xlim();
-        if (std::isfinite (xlim_set[0]) && std::isfinite (xlim_set[1]))
-          xlim = xlim_set;
-
         auto ylim_set = get_ylim();
-        if (std::isfinite (ylim_set[0]) && std::isfinite (ylim_set[1]))
-          ylim = ylim_set;
+
+        bool xlim_manual = std::isfinite (xlim_set[0]) && std::isfinite (xlim_set[1]);
+        bool ylim_manual = std::isfinite (ylim_set[0]) && std::isfinite (ylim_set[1]);
+
+        if (xlim_manual) xlim = xlim_set;
+        if (ylim_manual) ylim = ylim_set;
 
 
         auto font = Font::get_font();
         int margin_x = 10*font.width();
         int margin_y = 2*font.height();
+
+        auto xtick_spacing = tick_spacing (xlim, std::max (5.0f, (canvas.width()-margin_x)/(5.0f*font.height())));
+        auto ytick_spacing = tick_spacing (ylim, std::max (5.0f, (canvas.height()-margin_y)/(5.0f*font.height())));
+        std::cerr << xtick_spacing << " " << ytick_spacing << "\n";
+
+        if (!xlim_manual) refine_lim (xlim, xtick_spacing);
+        if (!ylim_manual) refine_lim (ylim, ytick_spacing);
+
+        if (!std::isfinite (grid_spacing[0])) grid_spacing[0] = xtick_spacing;
+        if (!std::isfinite (grid_spacing[1])) grid_spacing[1] = ytick_spacing;
 
 
         struct CanvasView {
@@ -830,22 +857,18 @@ namespace termviz {
           std::array<float,2> xlim, ylim;
           int width () const { return canvas.width() - x_offset; }
           int height () const { return canvas.height() - y_offset; }
-          float mapx (float x) const { return width() * (x-xlim[0])/(xlim[1]-xlim[0]); }
-          float mapy (float y) const { return height() * (1.0 - (y-ylim[0])/(ylim[1]-ylim[0])); }
+          float mapx (float x) const { return (width()-1) * (x-xlim[0])/(xlim[1]-xlim[0]); }
+          float mapy (float y) const { return (height()-1) * (1.0 - (y-ylim[0])/(ylim[1]-ylim[0])); }
           ctype& operator() (int x, int y) { return canvas(x+x_offset,y); }
         };
 
         CanvasView plot_area = { canvas, margin_x, margin_y, xlim, ylim };
 
-        if (!std::isfinite (grid_spacing[0]))
-          grid_spacing[0] = 0.2f * (xlim[1]-xlim[0]);
-        if (!std::isfinite (grid_spacing[1]))
-          grid_spacing[1] = 0.2f * (ylim[1]-ylim[0]);
-
 
 
         if (grid_spacing[0] != 0.0) {
-          for (float x = grid_spacing[0]*std::ceil (xlim[0]/grid_spacing[0]); x < xlim[1]; x += grid_spacing[0]) {
+          for (int n = std::ceil (xlim[0]/grid_spacing[0]); n < xlim[1]/grid_spacing[1]; n++) {
+            const float x = n*grid_spacing[0];
             render_line (canvas, margin_x+plot_area.mapx(x), plot_area.mapy(ylim[0]), margin_x+plot_area.mapx(x), plot_area.mapy(ylim[1]), 1, ( x == 0.0 ? 0 : 10 ), 0.1);
             if (margin_y) {
               std::stringstream legend;
@@ -856,7 +879,8 @@ namespace termviz {
         }
 
         if (grid_spacing[1] != 0.0) {
-          for (float y = grid_spacing[1]*std::ceil (ylim[0]/grid_spacing[1]); y < ylim[1]; y += grid_spacing[1]) {
+          for (int n = std::ceil (ylim[0]/grid_spacing[1]); n < ylim[1]/grid_spacing[1]; n++) {
+            float y = n*grid_spacing[1];
             render_line (canvas, margin_x+plot_area.mapx(xlim[0]), plot_area.mapy(y), margin_x+plot_area.mapx(xlim[1]), plot_area.mapy(y), 1, ( y == 0.0 ? 0 : 10 ), 0.1);
             if (margin_x) {
               std::stringstream legend;
@@ -884,14 +908,8 @@ namespace termviz {
         return lim;
       }
 
-    inline std::array<float,2> expand_lim (const std::array<float,2>& lim, float expand_by = lim_expand_by_factor)
-    {
-      float d = expand_by * (lim[1]-lim[0]);
-      return { lim[0]-d, lim[1]+d };
-    }
 
-
-    inline void update_lim_helper (std::array<float,2>& current_lim, const std::array<float,2>& new_lim)
+    inline void __update_lim (std::array<float,2>& current_lim, const std::array<float,2>& new_lim)
     {
       current_lim[0] = std::min (current_lim[0], new_lim[0]);
       current_lim[1] = std::max (current_lim[1], new_lim[1]);
@@ -902,16 +920,16 @@ namespace termviz {
     template <typename VectorType>
       inline void LineYItem<VectorType>::update_lim (std::array<float,2>& xlim, std::array<float,2>& ylim) const
       {
-        update_lim_helper (xlim, { 0.0f, static_cast<float>(y.size()) });
-        update_lim_helper (ylim, expand_lim (get_range(y)));
+        __update_lim (xlim, { 0.0f, static_cast<float>(y.size()) });
+        __update_lim (ylim, get_range(y));
       }
 
 
     template <typename VectorTypeX, typename VectorTypeY>
       inline void LineXYItem<VectorTypeX,VectorTypeY>::update_lim (std::array<float,2>& xlim, std::array<float,2>& ylim) const
       {
-        update_lim_helper (xlim, expand_lim (get_range(x)));
-        update_lim_helper (ylim, expand_lim (get_range(y)));
+        __update_lim (xlim, get_range(x));
+        __update_lim (ylim, get_range(y));
       }
 
 
