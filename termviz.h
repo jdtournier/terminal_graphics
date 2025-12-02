@@ -279,7 +279,8 @@ namespace termviz {
       mutable ColourMap cmap = get_default_cmap();
       mutable bool zero_is_transparent = true;
       mutable bool done = false;
-      mutable std::array<float,2> grid_spacing = { None, None };
+      mutable std::array<float,2> tick_spacing = { None, None };
+      mutable std::array<bool,2> grid = { true, true };
       mutable std::array<float,2> xlim = { inf, -inf };
       mutable std::array<float,2> ylim = { inf, -inf };
 
@@ -289,7 +290,8 @@ namespace termviz {
       bool already_rendered () const { if (done) return true; done = true; return false; }
       template <typename ImageType> void render (ImageType& canvas) const { }
       std::array<int,2>& get_canvas_size() const { return canvas_size; }
-      std::array<float,2>& get_grid_spacing() const { return grid_spacing; }
+      std::array<float,2>& get_tick_spacing() const { return tick_spacing; }
+      std::array<bool,2>& get_grid() const { return grid; }
       void update_lim (std::array<float,2>& xlim, std::array<float,2>& ylim) const { }
       std::array<float,2>& get_xlim() const { return xlim; }
       std::array<float,2>& get_ylim() const { return ylim; }
@@ -358,7 +360,8 @@ namespace termviz {
 
           const Entry& xlim (float x_min, float x_max) const { get_xlim() = { x_min, x_max }; return *this; }
           const Entry& ylim (float y_min, float y_max) const { get_ylim() = { y_min, y_max }; return *this; }
-          const Entry& grid (float x_spacing, float y_spacing) const { get_grid_spacing() = { x_spacing, y_spacing }; return *this; }
+          const Entry& ticks (float x_spacing, float y_spacing) const { get_tick_spacing() = { x_spacing, y_spacing }; return *this; }
+          const Entry& grid (bool show_xgrid, bool show_ygrid) const { get_grid() = { show_xgrid, show_ygrid }; return *this; }
           const Entry& colourmap (const ColourMap& cmap) const { get_colourmap() = cmap; return *this; }
           const Entry& transparent (bool is_transparent) const { get_transparent() = is_transparent; return *this; }
 
@@ -369,7 +372,8 @@ namespace termviz {
           ColourMap& get_colourmap () const { return prev.get_colourmap(); }
           bool& get_transparent () const { return prev.get_transparent(); }
           std::array<int,2>& get_canvas_size() const { return prev.get_canvas_size(); }
-          std::array<float,2>& get_grid_spacing() const { return prev.get_grid_spacing(); }
+          std::array<float,2>& get_tick_spacing() const { return prev.get_tick_spacing(); }
+          std::array<bool,2>& get_grid() const { return prev.get_grid(); }
           std::array<float,2>& get_xlim() const { return prev.get_xlim(); }
           std::array<float,2>& get_ylim() const { return prev.get_ylim(); }
 
@@ -798,7 +802,7 @@ namespace termviz {
 
   namespace {
 
-    inline float tick_spacing (const std::array<float,2>& lim, float init_spacing)
+    inline float compute_tick_spacing (const std::array<float,2>& lim, float init_spacing)
     {
       double tick = (lim[1]-lim[0])/init_spacing;
       double mult = std::pow(10.0, std::floor (std::log10 (tick)));
@@ -819,7 +823,8 @@ namespace termviz {
     template <typename Item, typename Previous>
       inline void Entry<Item,Previous>::main_render () const {
         auto canvas_size = get_canvas_size();
-        auto grid_spacing = get_grid_spacing();
+        auto tick_spacing = get_tick_spacing();
+        auto grid = get_grid();
 
         Image<ctype> canvas (canvas_size[0], canvas_size[1]);
 
@@ -829,64 +834,68 @@ namespace termviz {
         auto xlim_set = get_xlim();
         auto ylim_set = get_ylim();
 
-        bool xlim_manual = std::isfinite (xlim_set[0]) && std::isfinite (xlim_set[1]);
-        bool ylim_manual = std::isfinite (ylim_set[0]) && std::isfinite (ylim_set[1]);
+        const bool xlim_manual = std::isfinite (xlim_set[0]) && std::isfinite (xlim_set[1]);
+        const bool ylim_manual = std::isfinite (ylim_set[0]) && std::isfinite (ylim_set[1]);
+
+        const bool show_xticks = !( tick_spacing[0] <= 0.0 );
+        const bool show_yticks = !( tick_spacing[1] <= 0.0 );
 
         if (xlim_manual) xlim = xlim_set;
         if (ylim_manual) ylim = ylim_set;
 
-
         auto font = Font::get_font();
-        int margin_x = 10*font.width();
-        int margin_y = 2*font.height();
+        int margin_left = 10*font.width();
+        int margin_bottom = 2*font.height();
+        int margin_right = 3*font.width();
+        int margin_top = 1*font.height();
 
-        auto xtick_spacing = tick_spacing (xlim, std::max (5.0f, (canvas.width()-margin_x)/(5.0f*font.height())));
-        auto ytick_spacing = tick_spacing (ylim, std::max (5.0f, (canvas.height()-margin_y)/(5.0f*font.height())));
-        std::cerr << xtick_spacing << " " << ytick_spacing << "\n";
+        auto xtick_spacing = compute_tick_spacing (xlim, std::max (8.0f, (canvas.width()-margin_left)/(5.0f*font.height())));
+        auto ytick_spacing = compute_tick_spacing (ylim, std::max (8.0f, (canvas.height()-margin_bottom)/(5.0f*font.height())));
 
         if (!xlim_manual) refine_lim (xlim, xtick_spacing);
         if (!ylim_manual) refine_lim (ylim, ytick_spacing);
 
-        if (!std::isfinite (grid_spacing[0])) grid_spacing[0] = xtick_spacing;
-        if (!std::isfinite (grid_spacing[1])) grid_spacing[1] = ytick_spacing;
+        if (!std::isfinite (tick_spacing[0]) || tick_spacing[0] <= 0.0) tick_spacing[0] = xtick_spacing;
+        if (!std::isfinite (tick_spacing[1]) || tick_spacing[1] <= 0.0) tick_spacing[1] = ytick_spacing;
 
 
         struct CanvasView {
           Image<ctype>& canvas;
-          int x_offset, y_offset;
+          int margin_left, margin_bottom, margin_right, margin_top;
           std::array<float,2> xlim, ylim;
-          int width () const { return canvas.width() - x_offset; }
-          int height () const { return canvas.height() - y_offset; }
+          int width () const { return canvas.width() - margin_left - margin_right; }
+          int height () const { return canvas.height() - margin_bottom - margin_top; }
           float mapx (float x) const { return (width()-1) * (x-xlim[0])/(xlim[1]-xlim[0]); }
           float mapy (float y) const { return (height()-1) * (1.0 - (y-ylim[0])/(ylim[1]-ylim[0])); }
-          ctype& operator() (int x, int y) { return canvas(x+x_offset,y); }
+          ctype& operator() (int x, int y) { return canvas(x+margin_left,y+margin_top); }
         };
 
-        CanvasView plot_area = { canvas, margin_x, margin_y, xlim, ylim };
+        CanvasView plot_area = { canvas, margin_left, margin_bottom, margin_right, margin_top, xlim, ylim };
 
+        for (int n = std::ceil (xlim[0]/tick_spacing[0]); n <= xlim[1]/tick_spacing[0]; n++) {
+          const float x = n*tick_spacing[0];
+          if (grid[0])
+            render_line (plot_area, plot_area.mapx(x), plot_area.mapy(ylim[0]), plot_area.mapx(x), plot_area.mapy(ylim[1]), 1, 10, ( n == 0 ? 0.7 : 0.1 ));
 
-
-        if (grid_spacing[0] != 0.0) {
-          for (int n = std::ceil (xlim[0]/grid_spacing[0]); n < xlim[1]/grid_spacing[1]; n++) {
-            const float x = n*grid_spacing[0];
-            render_line (canvas, margin_x+plot_area.mapx(x), plot_area.mapy(ylim[0]), margin_x+plot_area.mapx(x), plot_area.mapy(ylim[1]), 1, ( x == 0.0 ? 0 : 10 ), 0.1);
-            if (margin_y) {
-              std::stringstream legend;
-              legend << std::setprecision (3) << x;
-              render_text (canvas, legend.str(), margin_x+plot_area.mapx(x), plot_area.mapy (ylim[0]), 0.5, 1.5);
-            }
+          if (show_xticks) {
+            std::stringstream legend;
+            legend << std::setprecision (3) << x;
+            render_text (canvas, legend.str(), margin_left+plot_area.mapx(x), margin_top+plot_area.mapy (ylim[0]), 0.5, 1.5);
+            render_line (plot_area, plot_area.mapx(x), plot_area.mapy(ylim[0]), plot_area.mapx(x), plot_area.mapy(ylim[0])-5, 1);
           }
         }
 
-        if (grid_spacing[1] != 0.0) {
-          for (int n = std::ceil (ylim[0]/grid_spacing[1]); n < ylim[1]/grid_spacing[1]; n++) {
-            float y = n*grid_spacing[1];
-            render_line (canvas, margin_x+plot_area.mapx(xlim[0]), plot_area.mapy(y), margin_x+plot_area.mapx(xlim[1]), plot_area.mapy(y), 1, ( y == 0.0 ? 0 : 10 ), 0.1);
-            if (margin_x) {
-              std::stringstream legend;
-              legend << std::setprecision (3) << y << " ";
-              render_text (canvas, legend.str(), margin_x+plot_area.mapx(xlim[0]), plot_area.mapy(y), 1.0, 0.5);
-            }
+        for (int n = std::ceil (ylim[0]/tick_spacing[1]); n <= ylim[1]/tick_spacing[1]; n++) {
+          const float y = n*tick_spacing[1];
+          if (grid[1])
+            render_line (plot_area, plot_area.mapx(xlim[0]), plot_area.mapy(y), plot_area.mapx(xlim[1]), plot_area.mapy(y), 1, 10, ( n == 0 ? 0.7 : 0.1 ));
+
+          if (show_yticks) {
+            std::stringstream legend;
+            legend << std::setprecision (3) << y << " ";
+            render_text (canvas, legend.str(), margin_left+plot_area.mapx(xlim[0]), margin_top+plot_area.mapy(y), 1.0, 0.5);
+            render_line (plot_area, plot_area.mapx(xlim[0]), plot_area.mapy(y), plot_area.mapx(xlim[0])+5, plot_area.mapy(y), 1);
+
           }
         }
 
