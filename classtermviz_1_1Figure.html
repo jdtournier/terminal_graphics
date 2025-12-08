@@ -82,28 +82,53 @@ $(function() {
   <div class="headertitle"><div class="title">termviz::Figure Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The main class responsible for plotting data to the terminal.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9510ea549821eee4bab7a8e56eb843a4" id="r_a9510ea549821eee4bab7a8e56eb843a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> (int width, int height)</td></tr>
+<tr class="memitem:aeccb7294f97956990967809b548fb71a" id="r_aeccb7294f97956990967809b548fb71a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> (int width=600, int height=200)</td></tr>
 <tr class="memitem:a81dd6ab93bfb1d492a6baad0670316e3" id="r_a81dd6ab93bfb1d492a6baad0670316e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81dd6ab93bfb1d492a6baad0670316e3">~Figure</a> ()</td></tr>
-<tr class="memitem:a93ab8a5c5de88c3b5e07d0a5f358c65e" id="r_a93ab8a5c5de88c3b5e07d0a5f358c65e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93ab8a5c5de88c3b5e07d0a5f358c65e">line</a> (float x0, float y0, float x1, float y1, int colour_index=2, int stiple=0, float stiple_frac=0.5)</td></tr>
+<tr class="memitem:a93ab8a5c5de88c3b5e07d0a5f358c65e" id="r_a93ab8a5c5de88c3b5e07d0a5f358c65e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93ab8a5c5de88c3b5e07d0a5f358c65e">line</a> (float x0, float y0, float x1, float y1, int colour_index=2, int stiple=0, float stiple_frac=0.5)</td></tr>
 <tr class="memitem:ae6cccad2be051633298235f459fefe1a" id="r_ae6cccad2be051633298235f459fefe1a"><td class="memTemplParams" colspan="2">template&lt;typename VectorType&gt; </td></tr>
-<tr class="memitem:ae6cccad2be051633298235f459fefe1a template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6cccad2be051633298235f459fefe1a">plot</a> (const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</td></tr>
+<tr class="memitem:ae6cccad2be051633298235f459fefe1a template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6cccad2be051633298235f459fefe1a">plot</a> (const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</td></tr>
 <tr class="memitem:a959a0e2e717d33913c6d5ed61773592d" id="r_a959a0e2e717d33913c6d5ed61773592d"><td class="memTemplParams" colspan="2">template&lt;typename VectorTypeX, typename VectorTypeY&gt; </td></tr>
-<tr class="memitem:a959a0e2e717d33913c6d5ed61773592d template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a959a0e2e717d33913c6d5ed61773592d">plot</a> (const VectorTypeX &amp;x, const VectorTypeY &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</td></tr>
-<tr class="memitem:a905a01b575d3235a25eec818d4976983" id="r_a905a01b575d3235a25eec818d4976983"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a905a01b575d3235a25eec818d4976983">text</a> (const std::string &amp;text, float x, float y, float anchor_x=0.5, float anchor_y=0.5, int colour_index=1)</td></tr>
-<tr class="memitem:a87f47482971a77fd7a8514abeff6e95d" id="r_a87f47482971a77fd7a8514abeff6e95d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87f47482971a77fd7a8514abeff6e95d">xlim</a> (float x_min, float x_max)</td></tr>
-<tr class="memitem:aa2faaab60e7b02fae50ac3b273260baa" id="r_aa2faaab60e7b02fae50ac3b273260baa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2faaab60e7b02fae50ac3b273260baa">ylim</a> (float y_min, float y_max)</td></tr>
-<tr class="memitem:a7dd0f09a2e683a76f2e43385509ca1f8" id="r_a7dd0f09a2e683a76f2e43385509ca1f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dd0f09a2e683a76f2e43385509ca1f8">ticks</a> (float x_spacing, float y_spacing)</td></tr>
-<tr class="memitem:a6ff69427ce4f1d02ea3d98b11397ca86" id="r_a6ff69427ce4f1d02ea3d98b11397ca86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ff69427ce4f1d02ea3d98b11397ca86">grid</a> (bool show_xgrid, bool show_ygrid)</td></tr>
-<tr class="memitem:a0331cfe11f0006e3bb52e1fe859bafc8" id="r_a0331cfe11f0006e3bb52e1fe859bafc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0331cfe11f0006e3bb52e1fe859bafc8">colourmap</a> (const <a class="el" href="namespacetermviz.html#afca9e330bb1a766d3e4a8ba6c9743fb5">ColourMap</a> &amp;cmap)</td></tr>
-<tr class="memitem:a30a4356c07988f606e610d2ee3fb5428" id="r_a30a4356c07988f606e610d2ee3fb5428"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30a4356c07988f606e610d2ee3fb5428">transparent</a> (bool is_transparent)</td></tr>
+<tr class="memitem:a959a0e2e717d33913c6d5ed61773592d template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a959a0e2e717d33913c6d5ed61773592d">plot</a> (const VectorTypeX &amp;x, const VectorTypeY &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</td></tr>
+<tr class="memitem:a905a01b575d3235a25eec818d4976983" id="r_a905a01b575d3235a25eec818d4976983"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a905a01b575d3235a25eec818d4976983">text</a> (const std::string &amp;text, float x, float y, float anchor_x=0.5, float anchor_y=0.5, int colour_index=1)</td></tr>
+<tr class="memitem:a87f47482971a77fd7a8514abeff6e95d" id="r_a87f47482971a77fd7a8514abeff6e95d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87f47482971a77fd7a8514abeff6e95d">xlim</a> (float x_min, float x_max)</td></tr>
+<tr class="memitem:aa2faaab60e7b02fae50ac3b273260baa" id="r_aa2faaab60e7b02fae50ac3b273260baa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2faaab60e7b02fae50ac3b273260baa">ylim</a> (float y_min, float y_max)</td></tr>
+<tr class="memitem:a7dd0f09a2e683a76f2e43385509ca1f8" id="r_a7dd0f09a2e683a76f2e43385509ca1f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dd0f09a2e683a76f2e43385509ca1f8">ticks</a> (float x_spacing, float y_spacing)</td></tr>
+<tr class="memitem:a6ff69427ce4f1d02ea3d98b11397ca86" id="r_a6ff69427ce4f1d02ea3d98b11397ca86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ff69427ce4f1d02ea3d98b11397ca86">grid</a> (bool show_xgrid, bool show_ygrid)</td></tr>
+<tr class="memitem:a0331cfe11f0006e3bb52e1fe859bafc8" id="r_a0331cfe11f0006e3bb52e1fe859bafc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0331cfe11f0006e3bb52e1fe859bafc8">colourmap</a> (const <a class="el" href="namespacetermviz.html#afca9e330bb1a766d3e4a8ba6c9743fb5">ColourMap</a> &amp;cmap)</td></tr>
+<tr class="memitem:a30a4356c07988f606e610d2ee3fb5428" id="r_a30a4356c07988f606e610d2ee3fb5428"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30a4356c07988f606e610d2ee3fb5428">transparent</a> (bool is_transparent)</td></tr>
 <tr class="memitem:a1687cfad2b83908131538b642b0e7f0d" id="r_a1687cfad2b83908131538b642b0e7f0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1687cfad2b83908131538b642b0e7f0d">show</a> ()</td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9510ea549821eee4bab7a8e56eb843a4" name="a9510ea549821eee4bab7a8e56eb843a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9510ea549821eee4bab7a8e56eb843a4">&#9670;&#160;</a></span>Figure()</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The main class responsible for plotting data to the terminal. </p>
+<p>To produce plots on the terminal, an instance of this class needs to be created, which sets up the size (in pixels) of the plot (or uses the default size if unspecified). Other public methods can then be used to add plots or text to the figure, or manipulate other properties such a limits and tick spacing. Finally, the <a class="el" href="#a1687cfad2b83908131538b642b0e7f0d">show()</a> method can be invoked to render the plot (note that this will implicitly be invoked in the <a class="el" href="classtermviz_1_1Figure.html" title="The main class responsible for plotting data to the terminal.">Figure</a> class destructor, and rarely needs to be invoked directly).</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+One-line plot</h3>
+<p>There are two main ways to produce a plot. The simplest is to use a one-line call to create an unnamed instance, and call all the required methods one after the other. All the relevant methods return a reference to the figure object, allowing them to be used for <em>method chaining</em>. For example: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure</a>()</div>
+<div class="line">  .<a class="code hl_function" href="#ae6cccad2be051633298235f459fefe1a">plot</a> (x, y1)</div>
+<div class="line">  .<a class="code hl_function" href="#ae6cccad2be051633298235f459fefe1a">plot</a> (x, y2)</div>
+<div class="line">  .<a class="code hl_function" href="#a905a01b575d3235a25eec818d4976983">text</a> (<span class="stringliteral">&quot;my plot&quot;</span>, 5, 5);</div>
+<div class="ttc" id="aclasstermviz_1_1Figure_html_a905a01b575d3235a25eec818d4976983"><div class="ttname"><a href="#a905a01b575d3235a25eec818d4976983">termviz::Figure::text</a></div><div class="ttdeci">Figure &amp; text(const std::string &amp;text, float x, float y, float anchor_x=0.5, float anchor_y=0.5, int colour_index=1)</div><div class="ttdef"><b>Definition</b> termviz.h:944</div></div>
+<div class="ttc" id="aclasstermviz_1_1Figure_html_ae6cccad2be051633298235f459fefe1a"><div class="ttname"><a href="#ae6cccad2be051633298235f459fefe1a">termviz::Figure::plot</a></div><div class="ttdeci">Figure &amp; plot(const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</div><div class="ttdef"><b>Definition</b> termviz.h:929</div></div>
+<div class="ttc" id="anamespacetermviz_html_a15214a36eb0f07682975083edc414eb4"><div class="ttname"><a href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure</a></div><div class="ttdeci">Figure figure(int width=600, int height=200)</div><div class="ttdef"><b>Definition</b> termviz.h:490</div></div>
+</div><!-- fragment --><p> Since the destructor is called as soon as the line finishes, there is no need to add the final <span class="tt">.<a class="el" href="#a1687cfad2b83908131538b642b0e7f0d">show()</a></span> call.</p>
+<p>Note that we are using the <a class="el" href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure()</a> convenience call in the above example (though the <a class="el" href="classtermviz_1_1Figure.html" title="The main class responsible for plotting data to the terminal.">termviz::Figure()</a> constructor can be invoked directly if preferred).</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+long form</h3>
+<p>The second approach is to create a <em>named</em> instance of the <a class="el" href="classtermviz_1_1Figure.html" title="The main class responsible for plotting data to the terminal.">termviz::Figure</a>, call methods as required, and finally call the <a class="el" href="#a1687cfad2b83908131538b642b0e7f0d">show()</a> method (or allow the instance to go out of scope). This is useful in cases where the number of plots to add is not known at compile-time, for example. To illustrate: </p><div class="fragment"><div class="line">std::vector&lt;std::vector&lt;float&gt;&gt; list_of_data = ...;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">auto</span> fig = <a class="code hl_function" href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure</a> (1024, 256);</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; data : list_of_data)</div>
+<div class="line">  fig.plot (data);</div>
+<div class="line">fig.show();</div>
+</div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aeccb7294f97956990967809b548fb71a" name="aeccb7294f97956990967809b548fb71a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeccb7294f97956990967809b548fb71a">&#9670;&#160;</a></span>Figure()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -114,12 +139,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">termviz::Figure::Figure </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>width</em></span><span class="paramdefsep"> = </span><span class="paramdefval">600</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span><span class="paramdefsep"> = </span><span class="paramdefval">200</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -167,7 +192,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::line </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::line </td>
           <td>(</td>
           <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x0</em></span>, </td>
         </tr>
@@ -223,7 +248,7 @@ template&lt;typename VectorType&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::plot </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::plot </td>
           <td>(</td>
           <td class="paramtype">const VectorType &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
         </tr>
@@ -264,7 +289,7 @@ template&lt;typename VectorTypeX, typename VectorTypeY&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::plot </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::plot </td>
           <td>(</td>
           <td class="paramtype">const VectorTypeX &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
         </tr>
@@ -308,7 +333,7 @@ template&lt;typename VectorTypeX, typename VectorTypeY&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::text </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::text </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>text</em></span>, </td>
         </tr>
@@ -357,7 +382,7 @@ template&lt;typename VectorTypeX, typename VectorTypeY&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::xlim </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::xlim </td>
           <td>(</td>
           <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x_min</em></span>, </td>
         </tr>
@@ -386,7 +411,7 @@ template&lt;typename VectorTypeX, typename VectorTypeY&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::ylim </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::ylim </td>
           <td>(</td>
           <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y_min</em></span>, </td>
         </tr>
@@ -415,7 +440,7 @@ template&lt;typename VectorTypeX, typename VectorTypeY&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::ticks </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::ticks </td>
           <td>(</td>
           <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x_spacing</em></span>, </td>
         </tr>
@@ -444,7 +469,7 @@ template&lt;typename VectorTypeX, typename VectorTypeY&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::grid </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::grid </td>
           <td>(</td>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>show_xgrid</em></span>, </td>
         </tr>
@@ -473,7 +498,7 @@ template&lt;typename VectorTypeX, typename VectorTypeY&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::colourmap </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::colourmap </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespacetermviz.html#afca9e330bb1a766d3e4a8ba6c9743fb5">ColourMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cmap</em></span></td><td>)</td>
           <td></td>
@@ -498,7 +523,7 @@ template&lt;typename VectorTypeX, typename VectorTypeY&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9510ea549821eee4bab7a8e56eb843a4">Figure</a> &amp; termviz::Figure::transparent </td>
+          <td class="memname"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp; termviz::Figure::transparent </td>
           <td>(</td>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_transparent</em></span></td><td>)</td>
           <td></td>

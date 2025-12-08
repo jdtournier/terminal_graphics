@@ -95,6 +95,7 @@ Classes</h2></td></tr>
 <tr class="memitem:Font" id="r_Font"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtermviz_1_1Font.html">Font</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class to hold the information about the font used for text rendering.  <a href="classtermviz_1_1Font.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Figure" id="r_Figure"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtermviz_1_1Figure.html">Figure</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main class responsible for plotting data to the terminal.  <a href="classtermviz_1_1Figure.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -131,8 +132,10 @@ Variables</h2></td></tr>
 <tr class="memdesc:adcb17d57f3f27bea1f535440817648d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">VT100 code to set the cursor position to the top left of the screen.  <br /></td></tr>
 <tr class="memitem:a91cdee7b1becc1526567f75c31406b47" id="r_a91cdee7b1becc1526567f75c31406b47"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91cdee7b1becc1526567f75c31406b47">Clear</a> = &quot;\033[2J&quot;</td></tr>
 <tr class="memdesc:a91cdee7b1becc1526567f75c31406b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">VT100 code to clear the screen.  <br /></td></tr>
-<tr class="memitem:add05fe1efd8a260644244d4500f81820" id="r_add05fe1efd8a260644244d4500f81820"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add05fe1efd8a260644244d4500f81820">inf</a> = std::numeric_limits&lt;float&gt;::infinity()</td></tr>
+<tr class="memitem:ac19f2a785d06da98a57be74a27c3007f" id="r_ac19f2a785d06da98a57be74a27c3007f"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac19f2a785d06da98a57be74a27c3007f">Inf</a> = std::numeric_limits&lt;float&gt;::infinity()</td></tr>
+<tr class="memdesc:ac19f2a785d06da98a57be74a27c3007f"><td class="mdescLeft">&#160;</td><td class="mdescRight">convenience shorthand for infinity as a <span class="tt">float</span>  <br /></td></tr>
 <tr class="memitem:a041f2ac45de965fdaf61ebd0120adbcb" id="r_a041f2ac45de965fdaf61ebd0120adbcb"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a041f2ac45de965fdaf61ebd0120adbcb">None</a> = std::numeric_limits&lt;float&gt;::quiet_NaN()</td></tr>
+<tr class="memdesc:a041f2ac45de965fdaf61ebd0120adbcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">convenience shorthand for NaN as a <span class="tt">float</span>  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The namespace within which all functionality is placed. </p>
@@ -546,8 +549,8 @@ template&lt;typename ImageType&gt; </div>
 <div class="line">  <span class="comment">// perform computations, etc.</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasstermviz_1_1Figure_html_ae6cccad2be051633298235f459fefe1a"><div class="ttname"><a href="classtermviz_1_1Figure.html#ae6cccad2be051633298235f459fefe1a">termviz::Figure::plot</a></div><div class="ttdeci">Figure &amp; plot(const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</div><div class="ttdef"><b>Definition</b> termviz.h:879</div></div>
-<div class="ttc" id="anamespacetermviz_html_a15214a36eb0f07682975083edc414eb4"><div class="ttname"><a href="#a15214a36eb0f07682975083edc414eb4">termviz::figure</a></div><div class="ttdeci">Figure figure(int width=600, int height=200)</div><div class="ttdef"><b>Definition</b> termviz.h:440</div></div>
+<div class="ttc" id="aclasstermviz_1_1Figure_html_ae6cccad2be051633298235f459fefe1a"><div class="ttname"><a href="classtermviz_1_1Figure.html#ae6cccad2be051633298235f459fefe1a">termviz::Figure::plot</a></div><div class="ttdeci">Figure &amp; plot(const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</div><div class="ttdef"><b>Definition</b> termviz.h:929</div></div>
+<div class="ttc" id="anamespacetermviz_html_a15214a36eb0f07682975083edc414eb4"><div class="ttname"><a href="#a15214a36eb0f07682975083edc414eb4">termviz::figure</a></div><div class="ttdeci">Figure figure(int width=600, int height=200)</div><div class="ttdef"><b>Definition</b> termviz.h:490</div></div>
 <div class="ttc" id="anamespacetermviz_html_a91cdee7b1becc1526567f75c31406b47"><div class="ttname"><a href="#a91cdee7b1becc1526567f75c31406b47">termviz::Clear</a></div><div class="ttdeci">constexpr std::string_view Clear</div><div class="ttdoc">VT100 code to clear the screen.</div><div class="ttdef"><b>Definition</b> termviz.h:180</div></div>
 <div class="ttc" id="anamespacetermviz_html_adcb17d57f3f27bea1f535440817648d0"><div class="ttname"><a href="#adcb17d57f3f27bea1f535440817648d0">termviz::Home</a></div><div class="ttdeci">constexpr std::string_view Home</div><div class="ttdoc">VT100 code to set the cursor position to the top left of the screen.</div><div class="ttdef"><b>Definition</b> termviz.h:175</div></div>
 </div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a91cdee7b1becc1526567f75c31406b47" title="VT100 code to clear the screen.">termviz::Clear</a> </dd></dl>
@@ -579,8 +582,8 @@ template&lt;typename ImageType&gt; </div>
 
 </div>
 </div>
-<a id="add05fe1efd8a260644244d4500f81820" name="add05fe1efd8a260644244d4500f81820"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add05fe1efd8a260644244d4500f81820">&#9670;&#160;</a></span>inf</h2>
+<a id="ac19f2a785d06da98a57be74a27c3007f" name="ac19f2a785d06da98a57be74a27c3007f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19f2a785d06da98a57be74a27c3007f">&#9670;&#160;</a></span>Inf</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -589,7 +592,7 @@ template&lt;typename ImageType&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto termviz::inf = std::numeric_limits&lt;float&gt;::infinity()</td>
+          <td class="memname">auto termviz::Inf = std::numeric_limits&lt;float&gt;::infinity()</td>
         </tr>
       </table>
   </td>
@@ -598,6 +601,8 @@ template&lt;typename ImageType&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>convenience shorthand for infinity as a <span class="tt">float</span> </p>
 
 </div>
 </div>
@@ -620,6 +625,8 @@ template&lt;typename ImageType&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>convenience shorthand for NaN as a <span class="tt">float</span> </p>
 
 </div>
 </div>

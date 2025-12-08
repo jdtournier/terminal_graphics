@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inf_0',['inf',['../namespacetermviz.html#add05fe1efd8a260644244d4500f81820',1,'termviz']]]
+  ['inf_0',['Inf',['../namespacetermviz.html#ac19f2a785d06da98a57be74a27c3007f',1,'termviz']]]
 ];
