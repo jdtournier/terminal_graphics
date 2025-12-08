@@ -14,6 +14,7 @@
 #include <iostream>
 #include <cassert>
 #include <array>
+#include <algorithm>
 #include <limits>
 #include <cmath>
 #include <vector>
@@ -485,7 +486,7 @@ namespace termviz {
          * \sa Figure for description of the effect of `colour_index`, `stiple`
          * and `stiple_frac`.
          */
-        Figure& line (float x0, float y0, float x1, float y1, int colour_index = 2, int stiple = 0, float stiple_frac = 0.5);
+        Figure& line (float x0, float y0, float x1, float y1, int colour_index = -1, int stiple = 0, float stiple_frac = 0.5);
 
         //! plot the data in `y` as a function of its index in `y`.
         /**
@@ -493,7 +494,7 @@ namespace termviz {
          * and `stiple_frac`.
          */
         template <typename VectorType>
-          Figure& plot (const VectorType& y, int colour_index = 2, int stiple = 0, float stiple_frac = 0.5);
+          Figure& plot (const VectorType& y, int colour_index = -1, int stiple = 0, float stiple_frac = 0.5);
 
         //! plot the data in `y` as a function of the data in `x`
         /**
@@ -504,7 +505,7 @@ namespace termviz {
          * and `stiple_frac`.
          */
         template <typename VectorTypeX, typename VectorTypeY>
-          Figure& plot (const VectorTypeX& x, const VectorTypeY& y, int colour_index = 2, int stiple = 0, float stiple_frac = 0.5);
+          Figure& plot (const VectorTypeX& x, const VectorTypeY& y, int colour_index = -1, int stiple = 0, float stiple_frac = 0.5);
 
         //! Add the text string in `text` to the plot at position (x,y)
         /**
@@ -1280,16 +1281,17 @@ namespace termviz {
       }
     }
 
+    int next_colour_index = 2;
     // Render elements:
     for (const auto& el : m_elements) {
       if (el.index() == 0) {
         const auto& p = std::get<Line>(el);
-        const int colour_index = get_colour_in_cmap (p.colour_index);
+        const int colour_index = get_colour_in_cmap (p.colour_index < 0 ? next_colour_index++ : p.colour_index);
         render_line (canvas, p.a[0], p.a[1], p.b[0], p.b[1], colour_index, p.stiple, p.stiple_frac);
       }
       else if (el.index() == 1) {
         const auto& p = std::get<YPlot>(el);
-        const int colour_index = get_colour_in_cmap (p.colour_index);
+        const int colour_index = get_colour_in_cmap (p.colour_index < 0 ? next_colour_index++ : p.colour_index);
         for (std::size_t n = 0; n < p.y.size()-1; ++n) {
           const auto a = map ({ static_cast<float>(n), p.y[n] });
           const auto b = map ({ static_cast<float>(n+1), p.y[n+1] });
@@ -1298,7 +1300,7 @@ namespace termviz {
       }
       else if (el.index() == 2) {
         const auto& p = std::get<XYPlot>(el);
-        const int colour_index = get_colour_in_cmap (p.colour_index);
+        const int colour_index = get_colour_in_cmap (p.colour_index < 0 ? next_colour_index++ : p.colour_index);
         for (std::size_t n = 0; n < p.y.size()-1; ++n) {
           const auto a = map ({ p.x[n], p.y[n] });
           const auto b = map ({ p.x[n+1], p.y[n+1] });
