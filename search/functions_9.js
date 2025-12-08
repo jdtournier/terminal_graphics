@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['width_0',['width',['../classtermviz_1_1Image.html#ac1ecc00b184f5e42a36cb8f20ff2ce53',1,'termviz::Image::width()'],['../classtermviz_1_1Rescale.html#a5fa35714ba12c08b8addea2dd861e902',1,'termviz::Rescale::width()'],['../classtermviz_1_1magnify.html#ad86cf6491be2f4023b6214b741319a73',1,'termviz::magnify::width()'],['../classtermviz_1_1Font.html#aefa9b513662ccfb343fb17f51400cc04',1,'termviz::Font::width()']]]
+  ['plot_0',['plot',['../classtermviz_1_1Figure.html#ae6cccad2be051633298235f459fefe1a',1,'termviz::Figure::plot(const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)'],['../classtermviz_1_1Figure.html#a959a0e2e717d33913c6d5ed61773592d',1,'termviz::Figure::plot(const VectorTypeX &amp;x, const VectorTypeY &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)']]]
 ];

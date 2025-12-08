@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['plot_0',['Plot',['../classTG_1_1Plot.html#a6cfb0497a41d635f96fd8f1f56c4efa8',1,'TG::Plot']]],
-  ['plot_1',['plot',['../namespaceTG.html#aac7bc59d48eed3e752b1badb5d5cd01e',1,'TG']]]
+  ['render_0',['render',['../classtermviz_1_1Font.html#a9cd94113587d149ce7378a6c88ded45b',1,'termviz::Font']]],
+  ['render_5fline_1',['render_line',['../namespacetermviz.html#ae972ba0bf645c290c61c222390dcc740',1,'termviz']]],
+  ['render_5ftext_2',['render_text',['../namespacetermviz.html#a9a2304bad6b529218eddeb11bbac539f',1,'termviz']]],
+  ['rescale_3',['Rescale',['../classtermviz_1_1Rescale.html#ad74a1433f5cee797e962d41d0ca3bd19',1,'termviz::Rescale']]]
 ];

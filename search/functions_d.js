@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['width_0',['width',['../classTG_1_1Image.html#a22c520a936ba1239e88822073a76880e',1,'TG::Image::width()'],['../classTG_1_1Rescale.html#a9df72887de5af7f976dce42563d0fde7',1,'TG::Rescale::width()'],['../classTG_1_1magnify.html#ac84a1739053d99548913596ec8f5a9f7',1,'TG::magnify::width()'],['../classTG_1_1Font.html#a870eeb21f0cdaf69ca51c25217986b86',1,'TG::Font::width()']]]
+  ['width_0',['width',['../classtermviz_1_1Image.html#ac1ecc00b184f5e42a36cb8f20ff2ce53',1,'termviz::Image::width()'],['../classtermviz_1_1Rescale.html#a5fa35714ba12c08b8addea2dd861e902',1,'termviz::Rescale::width()'],['../classtermviz_1_1magnify.html#ad86cf6491be2f4023b6214b741319a73',1,'termviz::magnify::width()'],['../classtermviz_1_1Font.html#aefa9b513662ccfb343fb17f51400cc04',1,'termviz::Font::width()']]]
 ];

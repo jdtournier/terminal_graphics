@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['magnify_0',['magnify',['../classtermviz_1_1magnify.html#a1095ec2ea08020ed8d0716c713b66597',1,'termviz::magnify']]]
+  ['line_0',['line',['../classtermviz_1_1Figure.html#a93ab8a5c5de88c3b5e07d0a5f358c65e',1,'termviz::Figure']]]
 ];
