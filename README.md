@@ -28,13 +28,12 @@ To work, this requires a sixel-capable terminal, such as:
 See the [demo program](demo.cpp) for example usage. This produces the output
 shown in the screenshot below.
 
+## Documentation
+
+[Click here for the doxygen-generated
+documentation](https://jdtournier.github.io/terminal_graphics/)
 
 ## Demonstration
 
 ![sixel render in terminal](screenshot.png)
 
-
-# Documentation
-
-[Click here for the doxygen-generated
-documentation](https://jdtournier.github.io/terminal_graphics/)
