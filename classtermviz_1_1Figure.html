@@ -175,7 +175,7 @@ Stiple and stiple fraction</h3>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Terminal background colour</h3>
 <p>The plots produced will be difficult to visualise if the foreground colour assumed here is actually the background colour of the terminal. Unfortunately, it is not trivial to automatically determine the colour of the background used by the terminal. There are two ways to deal with this:</p><ul>
-<li>use the <a class="el" href="#a30a4356c07988f606e610d2ee3fb5428" title="set whether the background is transparent (default: true)">transparent()</a> method with value <span class="tt">false</span> to ensure the background is always drawn. This ensures the plot is always visible, though it may be visually substandard (for exampel if the background colour is close to, but visibly not the same).</li>
+<li>use the <a class="el" href="#a30a4356c07988f606e610d2ee3fb5428" title="set whether the background is transparent (default: true)">transparent()</a> method with value <span class="tt">false</span> to ensure the background is always drawn. This ensures the plot is always visible, though it may be visually substandard (for example if the background colour is close to, but visibly not the same).</li>
 <li>set the <span class="tt">WHITEBG</span> environment variable, which inverts all the colours in the default colourmap. This can be done on the command-line when running your program: <div class="fragment"><div class="line">$ WHITEBG=1 ./demo</div>
 </div><!-- fragment --> or: <div class="fragment"><div class="line">$ <span class="keyword">export</span> WHITEBG=1</div>
 <div class="line">$ ./demo</div>
