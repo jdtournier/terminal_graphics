@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['terminal_20graphics_0',['Terminal Graphics',['../md_README.html',1,'Terminal Graphics'],['../index.html',1,'Terminal Graphics']]],
-  ['termviz_1',['termviz',['../namespacetermviz.html',1,'']]]
+  ['showing_20an_20image_3a_0',['Showing an image:',['../index.html#autotoc_md5',1,'']]]
 ];
