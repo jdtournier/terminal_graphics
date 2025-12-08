@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['requirements_0',['Requirements',['../md_README.html#autotoc_md1',1,'']]]
+  ['one_20line_20plot_0',['One-line plot',['../classtermviz_1_1Figure.html#autotoc_md8',1,'']]]
 ];

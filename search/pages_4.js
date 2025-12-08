@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['image_3a_0',['Showing an image:',['../index.html#autotoc_md5',1,'']]],
-  ['information_1',['Further information',['../index.html#autotoc_md7',1,'']]]
+  ['graphics_0',['Graphics',['../md_README.html',1,'Terminal Graphics'],['../index.html',1,'Terminal Graphics']]]
 ];

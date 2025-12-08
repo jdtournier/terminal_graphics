@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['terminal_20graphics_0',['Terminal Graphics',['../md_README.html',1,'Terminal Graphics'],['../index.html',1,'Terminal Graphics']]]
+  ['requirements_0',['Requirements',['../md_README.html#autotoc_md1',1,'']]]
 ];

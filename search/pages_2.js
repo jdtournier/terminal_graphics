@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['form_0',['long form',['../classtermviz_1_1Figure.html#autotoc_md9',1,'']]],
-  ['further_20information_1',['Further information',['../index.html#autotoc_md7',1,'']]]
+  ['data_0',['Plotting data',['../index.html#autotoc_md6',1,'']]],
+  ['demonstration_1',['Demonstration',['../md_README.html#autotoc_md4',1,'']]],
+  ['documentation_2',['Documentation',['../md_README.html#autotoc_md3',1,'']]]
 ];

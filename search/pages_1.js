@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['data_0',['Plotting data',['../index.html#autotoc_md6',1,'']]],
-  ['demonstration_1',['Demonstration',['../md_README.html#autotoc_md4',1,'']]],
-  ['documentation_2',['Documentation',['../md_README.html#autotoc_md3',1,'']]]
+  ['colour_20index_0',['Colour index',['../classtermviz_1_1Figure.html#autotoc_md10',1,'']]],
+  ['complex_20plotting_1',['More complex plotting',['../classtermviz_1_1Figure.html#autotoc_md9',1,'']]]
 ];
