@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['magnify_0',['magnify',['../classtermviz_1_1magnify.html',1,'termviz::magnify&lt; ImageType &gt;'],['../classtermviz_1_1magnify.html#a1095ec2ea08020ed8d0716c713b66597',1,'termviz::magnify::magnify()']]],
-  ['more_20complex_20plotting_1',['More complex plotting',['../classtermviz_1_1Figure.html#autotoc_md9',1,'']]]
+  ['line_0',['line',['../classtermviz_1_1Figure.html#a93ab8a5c5de88c3b5e07d0a5f358c65e',1,'termviz::Figure']]],
+  ['line_20plot_1',['One-line plot',['../classtermviz_1_1Figure.html#autotoc_md8',1,'']]]
 ];

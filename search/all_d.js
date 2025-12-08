@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['render_0',['render',['../classtermviz_1_1Font.html#a9cd94113587d149ce7378a6c88ded45b',1,'termviz::Font']]],
-  ['render_5fline_1',['render_line',['../namespacetermviz.html#ae972ba0bf645c290c61c222390dcc740',1,'termviz']]],
-  ['render_5ftext_2',['render_text',['../namespacetermviz.html#a9a2304bad6b529218eddeb11bbac539f',1,'termviz']]],
-  ['requirements_3',['Requirements',['../md_README.html#autotoc_md1',1,'']]],
-  ['rescale_4',['Rescale',['../classtermviz_1_1Rescale.html',1,'termviz::Rescale&lt; ImageType &gt;'],['../classtermviz_1_1Rescale.html#ad74a1433f5cee797e962d41d0ca3bd19',1,'termviz::Rescale::Rescale()']]]
+  ['plot_0',['plot',['../classtermviz_1_1Figure.html#autotoc_md8',1,'One-line plot'],['../classtermviz_1_1Figure.html#ae6cccad2be051633298235f459fefe1a',1,'termviz::Figure::plot(const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)'],['../classtermviz_1_1Figure.html#a959a0e2e717d33913c6d5ed61773592d',1,'termviz::Figure::plot(const VectorTypeX &amp;x, const VectorTypeY &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)']]],
+  ['plotting_1',['More complex plotting',['../classtermviz_1_1Figure.html#autotoc_md9',1,'']]],
+  ['plotting_20data_2',['Plotting data',['../index.html#autotoc_md6',1,'']]]
 ];

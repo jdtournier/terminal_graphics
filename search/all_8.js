@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['line_0',['line',['../classtermviz_1_1Figure.html#a93ab8a5c5de88c3b5e07d0a5f358c65e',1,'termviz::Figure']]],
-  ['line_20plot_1',['One-line plot',['../classtermviz_1_1Figure.html#autotoc_md8',1,'']]]
+  ['jet_0',['jet',['../namespacetermviz.html#aa8759e7e4ce88ed962316fe1e3e346e7',1,'termviz']]]
 ];

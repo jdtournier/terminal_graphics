@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['plot_0',['plot',['../classtermviz_1_1Figure.html#autotoc_md8',1,'One-line plot'],['../classtermviz_1_1Figure.html#ae6cccad2be051633298235f459fefe1a',1,'termviz::Figure::plot(const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)'],['../classtermviz_1_1Figure.html#a959a0e2e717d33913c6d5ed61773592d',1,'termviz::Figure::plot(const VectorTypeX &amp;x, const VectorTypeY &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)']]],
-  ['plotting_1',['More complex plotting',['../classtermviz_1_1Figure.html#autotoc_md9',1,'']]],
-  ['plotting_20data_2',['Plotting data',['../index.html#autotoc_md6',1,'']]]
+  ['one_20line_20plot_0',['One-line plot',['../classtermviz_1_1Figure.html#autotoc_md8',1,'']]],
+  ['operator_28_29_1',['operator()',['../classtermviz_1_1Image.html#ae07515c776904e02bc630f31d9d4ac3b',1,'termviz::Image::operator()(int x, int y)'],['../classtermviz_1_1Image.html#a213737230cd9be5a47a085c92f652931',1,'termviz::Image::operator()(int x, int y) const'],['../classtermviz_1_1Rescale.html#a5d7d877ca03aeb4325264b18661c67f5',1,'termviz::Rescale::operator()()'],['../classtermviz_1_1magnify.html#ab2ea79bcd86d7c4feac36e8fb120a1b9',1,'termviz::magnify::operator()()']]]
 ];

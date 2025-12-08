@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ylim_0',['ylim',['../classtermviz_1_1Figure.html#aa2faaab60e7b02fae50ac3b273260baa',1,'termviz::Figure']]]
+  ['xlim_0',['xlim',['../classtermviz_1_1Figure.html#a87f47482971a77fd7a8514abeff6e95d',1,'termviz::Figure']]]
 ];
