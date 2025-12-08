@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['requirements_0',['Requirements',['../md_README.html#autotoc_md1',1,'']]]
+  ['graphics_0',['Graphics',['../md_README.html',1,'Terminal Graphics'],['../index.html',1,'Terminal Graphics']]]
 ];

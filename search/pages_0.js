@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['demonstration_0',['Demonstration',['../md_README.html#autotoc_md4',1,'']]],
-  ['documentation_1',['Documentation',['../md_README.html#autotoc_md3',1,'']]]
+  ['an_20image_3a_0',['Showing an image:',['../index.html#autotoc_md5',1,'']]]
 ];
