@@ -89,8 +89,11 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aeccb7294f97956990967809b548fb71a" id="r_aeccb7294f97956990967809b548fb71a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> (int width=600, int height=200)</td></tr>
+<tr class="memdesc:aeccb7294f97956990967809b548fb71a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classtermviz_1_1Figure.html" title="The main class responsible for plotting data to the terminal.">Figure</a> of the size specified (in pixels).  <br /></td></tr>
 <tr class="memitem:a81dd6ab93bfb1d492a6baad0670316e3" id="r_a81dd6ab93bfb1d492a6baad0670316e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81dd6ab93bfb1d492a6baad0670316e3">~Figure</a> ()</td></tr>
+<tr class="memdesc:a81dd6ab93bfb1d492a6baad0670316e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: this will invoke the <a class="el" href="#a1687cfad2b83908131538b642b0e7f0d">show()</a> method if it hasn't already been invoked.  <br /></td></tr>
 <tr class="memitem:a93ab8a5c5de88c3b5e07d0a5f358c65e" id="r_a93ab8a5c5de88c3b5e07d0a5f358c65e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93ab8a5c5de88c3b5e07d0a5f358c65e">line</a> (float x0, float y0, float x1, float y1, int colour_index=2, int stiple=0, float stiple_frac=0.5)</td></tr>
+<tr class="memdesc:a93ab8a5c5de88c3b5e07d0a5f358c65e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a line segment to figure, joining point (x0,y0) to (x1, y1).  <br /></td></tr>
 <tr class="memitem:ae6cccad2be051633298235f459fefe1a" id="r_ae6cccad2be051633298235f459fefe1a"><td class="memTemplParams" colspan="2">template&lt;typename VectorType&gt; </td></tr>
 <tr class="memitem:ae6cccad2be051633298235f459fefe1a template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeccb7294f97956990967809b548fb71a">Figure</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6cccad2be051633298235f459fefe1a">plot</a> (const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</td></tr>
 <tr class="memitem:a959a0e2e717d33913c6d5ed61773592d" id="r_a959a0e2e717d33913c6d5ed61773592d"><td class="memTemplParams" colspan="2">template&lt;typename VectorTypeX, typename VectorTypeY&gt; </td></tr>
@@ -113,19 +116,23 @@ One-line plot</h3>
 <div class="line">  .<a class="code hl_function" href="#ae6cccad2be051633298235f459fefe1a">plot</a> (x, y1)</div>
 <div class="line">  .<a class="code hl_function" href="#ae6cccad2be051633298235f459fefe1a">plot</a> (x, y2)</div>
 <div class="line">  .<a class="code hl_function" href="#a905a01b575d3235a25eec818d4976983">text</a> (<span class="stringliteral">&quot;my plot&quot;</span>, 5, 5);</div>
-<div class="ttc" id="aclasstermviz_1_1Figure_html_a905a01b575d3235a25eec818d4976983"><div class="ttname"><a href="#a905a01b575d3235a25eec818d4976983">termviz::Figure::text</a></div><div class="ttdeci">Figure &amp; text(const std::string &amp;text, float x, float y, float anchor_x=0.5, float anchor_y=0.5, int colour_index=1)</div><div class="ttdef"><b>Definition</b> termviz.h:944</div></div>
-<div class="ttc" id="aclasstermviz_1_1Figure_html_ae6cccad2be051633298235f459fefe1a"><div class="ttname"><a href="#ae6cccad2be051633298235f459fefe1a">termviz::Figure::plot</a></div><div class="ttdeci">Figure &amp; plot(const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</div><div class="ttdef"><b>Definition</b> termviz.h:929</div></div>
-<div class="ttc" id="anamespacetermviz_html_a15214a36eb0f07682975083edc414eb4"><div class="ttname"><a href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure</a></div><div class="ttdeci">Figure figure(int width=600, int height=200)</div><div class="ttdef"><b>Definition</b> termviz.h:490</div></div>
+<div class="ttc" id="aclasstermviz_1_1Figure_html_a905a01b575d3235a25eec818d4976983"><div class="ttname"><a href="#a905a01b575d3235a25eec818d4976983">termviz::Figure::text</a></div><div class="ttdeci">Figure &amp; text(const std::string &amp;text, float x, float y, float anchor_x=0.5, float anchor_y=0.5, int colour_index=1)</div><div class="ttdef"><b>Definition</b> termviz.h:952</div></div>
+<div class="ttc" id="aclasstermviz_1_1Figure_html_ae6cccad2be051633298235f459fefe1a"><div class="ttname"><a href="#ae6cccad2be051633298235f459fefe1a">termviz::Figure::plot</a></div><div class="ttdeci">Figure &amp; plot(const VectorType &amp;y, int colour_index=2, int stiple=0, float stiple_frac=0.5)</div><div class="ttdef"><b>Definition</b> termviz.h:937</div></div>
+<div class="ttc" id="anamespacetermviz_html_a15214a36eb0f07682975083edc414eb4"><div class="ttname"><a href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure</a></div><div class="ttdeci">Figure figure(int width=600, int height=200)</div><div class="ttdef"><b>Definition</b> termviz.h:498</div></div>
 </div><!-- fragment --><p> Since the destructor is called as soon as the line finishes, there is no need to add the final <span class="tt">.<a class="el" href="#a1687cfad2b83908131538b642b0e7f0d">show()</a></span> call.</p>
 <p>Note that we are using the <a class="el" href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure()</a> convenience call in the above example (though the <a class="el" href="classtermviz_1_1Figure.html" title="The main class responsible for plotting data to the terminal.">termviz::Figure()</a> constructor can be invoked directly if preferred).</p>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 long form</h3>
 <p>The second approach is to create a <em>named</em> instance of the <a class="el" href="classtermviz_1_1Figure.html" title="The main class responsible for plotting data to the terminal.">termviz::Figure</a>, call methods as required, and finally call the <a class="el" href="#a1687cfad2b83908131538b642b0e7f0d">show()</a> method (or allow the instance to go out of scope). This is useful in cases where the number of plots to add is not known at compile-time, for example. To illustrate: </p><div class="fragment"><div class="line">std::vector&lt;std::vector&lt;float&gt;&gt; list_of_data = ...;</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">auto</span> fig = <a class="code hl_function" href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure</a> (1024, 256);</div>
+<div class="line"><span class="keyword">auto</span> fig = <a class="code hl_function" href="namespacetermviz.html#a15214a36eb0f07682975083edc414eb4">termviz::figure</a> (1024, 256).<a class="code hl_function" href="#a6ff69427ce4f1d02ea3d98b11397ca86">grid</a> (<span class="keyword">false</span>, <span class="keyword">true</span>);</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; data : list_of_data)</div>
-<div class="line">  fig.plot (data);</div>
-<div class="line">fig.show();</div>
+<div class="line">  fig.<a class="code hl_function" href="#ae6cccad2be051633298235f459fefe1a">plot</a> (data);</div>
+<div class="line">fig.<a class="code hl_function" href="#a87f47482971a77fd7a8514abeff6e95d">xlim</a> (0, 10);</div>
+<div class="line">fig.<a class="code hl_function" href="#a1687cfad2b83908131538b642b0e7f0d">show</a>();</div>
+<div class="ttc" id="aclasstermviz_1_1Figure_html_a1687cfad2b83908131538b642b0e7f0d"><div class="ttname"><a href="#a1687cfad2b83908131538b642b0e7f0d">termviz::Figure::show</a></div><div class="ttdeci">void show()</div><div class="ttdef"><b>Definition</b> termviz.h:1070</div></div>
+<div class="ttc" id="aclasstermviz_1_1Figure_html_a6ff69427ce4f1d02ea3d98b11397ca86"><div class="ttname"><a href="#a6ff69427ce4f1d02ea3d98b11397ca86">termviz::Figure::grid</a></div><div class="ttdeci">Figure &amp; grid(bool show_xgrid, bool show_ygrid)</div><div class="ttdef"><b>Definition</b> termviz.h:976</div></div>
+<div class="ttc" id="aclasstermviz_1_1Figure_html_a87f47482971a77fd7a8514abeff6e95d"><div class="ttname"><a href="#a87f47482971a77fd7a8514abeff6e95d">termviz::Figure::xlim</a></div><div class="ttdeci">Figure &amp; xlim(float x_min, float x_max)</div><div class="ttdef"><b>Definition</b> termviz.h:958</div></div>
 </div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aeccb7294f97956990967809b548fb71a" name="aeccb7294f97956990967809b548fb71a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeccb7294f97956990967809b548fb71a">&#9670;&#160;</a></span>Figure()</h2>
@@ -154,6 +161,8 @@ long form</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Construct a <a class="el" href="classtermviz_1_1Figure.html" title="The main class responsible for plotting data to the terminal.">Figure</a> of the size specified (in pixels). </p>
+
 </div>
 </div>
 <a id="a81dd6ab93bfb1d492a6baad0670316e3" name="a81dd6ab93bfb1d492a6baad0670316e3"></a>
@@ -178,6 +187,8 @@ long form</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Destructor: this will invoke the <a class="el" href="#a1687cfad2b83908131538b642b0e7f0d">show()</a> method if it hasn't already been invoked. </p>
 
 </div>
 </div>
@@ -233,6 +244,9 @@ long form</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Add a line segment to figure, joining point (x0,y0) to (x1, y1). </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classtermviz_1_1Figure.html" title="The main class responsible for plotting data to the terminal.">Figure</a> for description of the effect of <span class="tt">colour_index</span>, <span class="tt">stiple</span> and <span class="tt">stiple_frac</span>. </dd></dl>
 
 </div>
 </div>
