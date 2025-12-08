@@ -24,7 +24,7 @@ int main ()
     termviz::imshow (termviz::magnify (image, 2), 0, 255, termviz::hot(), true);
 
 
-    // demonstrate use of termviz::plot():
+    // demonstrate use of termviz::figure():
 
     std::vector<float> y (50);
 
@@ -32,7 +32,7 @@ int main ()
       y[x] = exp (-0.1*x) - 1.5*exp (-0.4*x);
 
     std::cout << "A simple one-line plot:\n";
-    termviz::plot().line (y);
+    termviz::figure().plot (y);
 
 
 
@@ -44,10 +44,10 @@ int main ()
     }
 
     std::cout << "Plotting arbitrary lines, without transparency:\n";
-    termviz::plot (768, 256)
+    termviz::figure (768, 256)
       .transparent(false)
-      .line (y, 4, 10)
-      .line (x, y, 3)
+      .plot (y, 4, 10)
+      .plot (x, y, 3)
       .text ("sinusoids", (x.size()-1)/2.0, 1.1, 0.5, 0.0, 6)
       .grid(false,false);
 
@@ -67,10 +67,10 @@ int main ()
       x = normal (gen);
 
     std::cout << "Plotting Normally distributed random variables:\n";
-    termviz::plot (1024, 256)
+    termviz::figure (1024, 256)
       .ylim (-1, 11)
       .grid (false, true)
-      .line (noise,2);
+      .plot (noise,2);
 
   }
   catch (std::exception& e) {
