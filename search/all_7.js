@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['jet_0',['jet',['../namespaceTG.html#a0a9992b11f9a3594253ba717dacfa1c0',1,'TG']]]
+  ['magnify_0',['magnify',['../classtermviz_1_1magnify.html',1,'termviz::magnify&lt; ImageType &gt;'],['../classtermviz_1_1magnify.html#a1095ec2ea08020ed8d0716c713b66597',1,'termviz::magnify::magnify()']]]
 ];

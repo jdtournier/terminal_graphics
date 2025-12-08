@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['get_0',['get',['../classTG_1_1Font.html#a0d405cb5f3df7f576e257bd0d18e5e73',1,'TG::Font']]],
-  ['get_5ffont_1',['get_font',['../classTG_1_1Font.html#acba8f33d985f1eeac12f43be7267b645',1,'TG::Font']]],
-  ['gray_2',['gray',['../namespaceTG.html#a79807e40039f5614eb37f9d62f32c3b8',1,'TG']]]
+  ['image_0',['Image',['../classtermviz_1_1Image.html#a129004b72fd143c8061615f42fc98938',1,'termviz::Image']]],
+  ['imshow_1',['imshow',['../namespacetermviz.html#a8f1f308622bd4b8b67aa035395ea5cf0',1,'termviz::imshow(const ImageType &amp;image, const ColourMap &amp;cmap, const bool zero_is_transparent=false)'],['../namespacetermviz.html#a781a018bcff9e4324963525d2f2a7ed7',1,'termviz::imshow(const ImageType &amp;image, double min, double max, const ColourMap &amp;cmap=gray(), const bool zero_is_transparent=false)']]]
 ];

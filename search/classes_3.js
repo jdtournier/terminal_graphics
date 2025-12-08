@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['plot_0',['Plot',['../classTG_1_1Plot.html',1,'TG']]]
+  ['rescale_0',['Rescale',['../classtermviz_1_1Rescale.html',1,'termviz']]]
 ];

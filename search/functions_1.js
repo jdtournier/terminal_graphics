@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['clear_0',['clear',['../classTG_1_1Image.html#a8895c82a2fb9b8ae6fadc935e36a1ae0',1,'TG::Image']]]
+  ['figure_0',['figure',['../namespacetermviz.html#a15214a36eb0f07682975083edc414eb4',1,'termviz']]],
+  ['font_1',['Font',['../classtermviz_1_1Font.html#a146a921f071471e768dc48b869e9b4a9',1,'termviz::Font']]]
 ];

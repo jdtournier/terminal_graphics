@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['colourmap_0',['ColourMap',['../namespaceTG.html#a4767041352af4cab24a3a3aa320db79a',1,'TG']]],
-  ['ctype_1',['ctype',['../namespaceTG.html#aed7e5fdc8a36cb993c5cb5009a03d5f2',1,'TG']]]
+  ['colourmap_0',['ColourMap',['../namespacetermviz.html#afca9e330bb1a766d3e4a8ba6c9743fb5',1,'termviz']]],
+  ['ctype_1',['ctype',['../namespacetermviz.html#a3073fb78a0c189c73866ae88e08b8aa7',1,'termviz']]]
 ];

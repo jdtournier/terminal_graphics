@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['render_0',['render',['../classTG_1_1Font.html#a64172eeffa274dc2c1c6644eab48810e',1,'TG::Font']]],
-  ['requirements_1',['Requirements',['../md_README.html#autotoc_md1',1,'']]],
-  ['rescale_2',['Rescale',['../classTG_1_1Rescale.html',1,'TG::Rescale&lt; ImageType &gt;'],['../classTG_1_1Rescale.html#abcd22621d66b55f72ef6c5a3df40ec9e',1,'TG::Rescale::Rescale()']]],
-  ['reset_3',['reset',['../classTG_1_1Plot.html#a8ea93d575075178535d47584b17f8570',1,'TG::Plot']]]
+  ['width_0',['width',['../classtermviz_1_1Image.html#ac1ecc00b184f5e42a36cb8f20ff2ce53',1,'termviz::Image::width()'],['../classtermviz_1_1Rescale.html#a5fa35714ba12c08b8addea2dd861e902',1,'termviz::Rescale::width()'],['../classtermviz_1_1magnify.html#ad86cf6491be2f4023b6214b741319a73',1,'termviz::magnify::width()'],['../classtermviz_1_1Font.html#aefa9b513662ccfb343fb17f51400cc04',1,'termviz::Font::width()']]]
 ];

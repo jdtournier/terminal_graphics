@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tg_0',['TG',['../namespaceTG.html',1,'']]]
+  ['termviz_0',['termviz',['../namespacetermviz.html',1,'']]]
 ];

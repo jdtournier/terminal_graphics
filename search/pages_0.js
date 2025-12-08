@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['graphics_0',['Graphics',['../md_README.html',1,'Terminal Graphics'],['../index.html',1,'Terminal Graphics']]]
+  ['demonstration_0',['Demonstration',['../md_README.html#autotoc_md4',1,'']]],
+  ['documentation_1',['Documentation',['../md_README.html#autotoc_md3',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_28_29_0',['operator()',['../classTG_1_1Image.html#ab32f3e414e801fb55a3599a0ce8ee9e7',1,'TG::Image::operator()(int x, int y)'],['../classTG_1_1Image.html#a88752878acaaf8c7b99a566aa4ec02ea',1,'TG::Image::operator()(int x, int y) const'],['../classTG_1_1Rescale.html#a1d755dfb2426550069c5fff073fe4098',1,'TG::Rescale::operator()()'],['../classTG_1_1magnify.html#a7386322aabea787bbe2580d42a368e72',1,'TG::magnify::operator()()']]]
+  ['width_0',['width',['../classtermviz_1_1Image.html#ac1ecc00b184f5e42a36cb8f20ff2ce53',1,'termviz::Image::width()'],['../classtermviz_1_1Rescale.html#a5fa35714ba12c08b8addea2dd861e902',1,'termviz::Rescale::width()'],['../classtermviz_1_1magnify.html#ad86cf6491be2f4023b6214b741319a73',1,'termviz::magnify::width()'],['../classtermviz_1_1Font.html#aefa9b513662ccfb343fb17f51400cc04',1,'termviz::Font::width()']]]
 ];

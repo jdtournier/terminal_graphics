@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['demonstration_0',['Demonstration',['../md_README.html#autotoc_md3',1,'']]],
-  ['disable_5ftransparency_1',['disable_transparency',['../classTG_1_1Plot.html#ac1c5f9057b5d1653d27ae4a742ade581',1,'TG::Plot']]],
-  ['documentation_2',['Documentation',['../md_README.html#autotoc_md4',1,'']]]
+  ['figure_0',['figure',['../namespacetermviz.html#a15214a36eb0f07682975083edc414eb4',1,'termviz']]],
+  ['font_1',['Font',['../classtermviz_1_1Font.html',1,'termviz::Font'],['../classtermviz_1_1Font.html#a146a921f071471e768dc48b869e9b4a9',1,'termviz::Font::Font()']]]
 ];
