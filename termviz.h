@@ -577,7 +577,6 @@ namespace termviz {
         std::array<int,2> m_canvas_size = { 768, 512 };
         ColourMap m_colourmap = get_default_cmap();
         bool m_zero_is_transparent = true;
-        bool m_done = false;
         std::array<float,2> m_tick_spacing = { None, None };
         std::array<bool,2> m_grid = { true, true };
         std::array<float,2> m_xlim = { Inf, -Inf };
@@ -999,8 +998,8 @@ namespace termviz {
         for (auto& c : x)
           c = 100-c;
 
-      return default_cmap;
-    }
+    return default_cmap;
+  }
 
 
 
