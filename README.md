@@ -17,6 +17,9 @@ To work, this requires a sixel-capable terminal, such as:
 - on macOS: wezterm, iTerm2
 - on Windows: wezterm, minTTY, Windows Terminal (preview)
 
+This also works in the VSCode terminal, if the
+`terminal.integrated.enableImages` setting is enabled.
+
 
 ## Usage
 
